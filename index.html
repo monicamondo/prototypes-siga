@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JExperts | Protótipos Siga</title>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/src/foundations/tokens/colors.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/src/foundations/tokens/typography.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/src/foundations/tokens/spacing.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/src/foundations/tokens/borders.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/src/foundations/tokens/shadows.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/src/foundations/tokens/globals.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero__product">
+        <img src="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/public/siga-logo.png" alt="Logo Siga"
+          class="hero__product-logo" />
+        <div class="hero__text">
+          <h1>Repositório de protótipos</h1>
+          <p class="hero__description">
+            Validação de interfaces gráficas.
+          </p>
+        </div>
+      </div>
+      <div class="hero__company">
+        <img src="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/public/logo-j-fundo-claro.svg" alt="JExperts"
+          class="hero__company-logo" />
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="catalog-card" aria-labelledby="catalog-title">
+        <div class="catalog-card__header">
+          <div>
+            <span class="catalog-card__eyebrow">Biblioteca de acessos</span>
+            <h2 id="catalog-title">Demandas prototipadas</h2>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="catalog-table">
+            <colgroup>
+              <col class="col-status" />
+              <col class="col-name" />
+              <col class="col-documentation" />
+              <col class="col-repository" />
+              <col class="col-prototype" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Nome</th>
+                <th>Documentação</th>
+                <th>Repositório<br>GitHub</th>
+                <th>Protótipo</th>
+              </tr>
+            </thead>
+            <tbody id="prototype-table-body"></tbody>
+          </table>
+        </div>
+
+        <div class="status-legend" aria-label="Legenda de status">
+          <span class="status-legend__item">
+            <span class="status-dot status-dot--radar" aria-hidden="true"></span>
+            No radar
+          </span>
+          <span class="status-legend__item">
+            <span class="status-dot status-dot--progress" aria-hidden="true"></span>
+            Em andamento
+          </span>
+          <span class="status-legend__item">
+            <span class="status-dot status-dot--approval" aria-hidden="true"></span>
+            Aguardando aprovação
+          </span>
+          <span class="status-legend__item">
+            <span class="status-dot status-dot--done" aria-hidden="true"></span>
+            Concluído
+          </span>
+        </div>
+      </section>
+      <div>
+        <p class="catalog-card__support">
+          Desenvolvedor Siga:<button class="catalog-help-link" type="button" data-open-dev-help> SAIBA MAIS</button>
+          sobre como
+          organizamos
+          as entregas do design.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal de ajuda para desenvolvedores -->
+  <div class="dev-help-modal" id="dev-help-modal" hidden>
+    <div class="dev-help-modal__backdrop" data-close-dev-help></div>
+    <div class="dev-help-modal__panel" role="dialog" aria-modal="true" aria-labelledby="dev-help-title" tabindex="-1">
+      <div class="dev-help-modal__header">
+        <h3 id="dev-help-title">Como usar os repositórios</h3>
+        <button class="dev-help-modal__close" type="button" aria-label="Fechar" data-close-dev-help>×</button>
+      </div>
+      <div class="dev-help-modal__body">
+        <p>
+          Concentramos todos os acessos referente às entregas de design em um só lugar. Aqui você encontra o link para
+          protótipo navegável, e o código HTML/CSS, que pode auxiliar na
+          etapa de implementação.
+        </p>
+
+        <ol class="dev-help-modal__steps">
+          <li>
+            Na tabela, clique em <code>Ver repositório</code>, e acesse o diretório no GitHub com o código fonte das
+            interfaces projetadas.
+          </li>
+          <li>
+            O protótipo possui um <b>componente novo</b>? Você pode inspecioná-lo no StoryBook do Design System, lá
+            projetamos todos os status e comportamento desejados para esse componente.
+          </li>
+        </ol>
+
+        <div class="dev-help-modal__codeblock" aria-label="Exemplos de caminhos">
+          <div class="dev-help-modal__codeblock-title">Design System Siga</div>
+          <pre>
+<a href="https://monicamondo.github.io/ds-siga/?path=/docs/componentes-modal--docs"
+              target="_blank">https://monicamondo.github.io/ds-siga/?path=/docs/componentes-modal--docs</a>
+          </pre>
+        </div>
+
+        <p class="dev-help-modal__hint">
+          Dica: a pasta <code>docs/</code> que você encontra nos diretórios da demanda, contém apenas resumo das nossas
+          reuniões e outros documentos gerados pelo núcleo de design durante o proceso criativo. Esses documentos
+          não são necessários para o <i>handoff</i>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer" aria-label="Rodapé">
+    <span>Núcleo de Design Jexperts - <span id="footer-year"></span></span>
+  </footer>
+
+  <!-- Script para adicionar linha na bilbioteca de protótipos -->
+  <script>
+    const demandEntryTemplate = {
+      status: "Preencher",
+      name: "Preencher",
+      documentationUrl: "",
+      prototypeRepoPath: "demanda",
+      prototypePagePath: "demanda/index.html",
+      sprintDeliveries: [
+        {
+          status: "Preencher",
+          functionality: "Preencher",
+          requirement: "Preencher",
+          prototypeRepoPath: "demanda/sprint-1",
+          prototypePagePath: "demanda/sprint-1/index.html"
+        }
+      ]
+    };
+
+    // Atualize este array conforme os diretórios reais de cada demanda e sprint.
+    const demandEntries = [
+      {
+        status: "Concluído",
+        name: "Planos e Grupo de Ações",
+        documentationUrl: "https://siga.atlassian.net/wiki/spaces/QC/pages/4073881612",
+        prototypeRepoPath: "planos-grupos-acoes/prototype",
+        prototypePagePath: "https://www.figma.com/make/Q69aQLZGMWQVEv47PgeTCE/Vincular-Planos-de-A%C3%A7%C3%A3o-ao-Objetivo-estat%C3%A9gico--Copy-?fullscreen=1&t=PiPrwA1oAzQMv7GZ-1",
+        sprintDeliveries: []
+      },
+      {
+        status: "Em andamento",
+        name: "Key Results",
+        documentationUrl: "https://siga.atlassian.net/wiki/spaces/QC/pages/4084957192/RQ004+-+Criar+o+conceito+de+resultados+chave",
+        prototypeRepoPath: "key-results",
+        sprintDeliveries: [
+          {
+            status: "Aguardando aprovação",
+            functionality: "Gerenciar KRs",
+            requirement: "RQ004",
+            prototypeRepoPath: "key-results/gerenciar-krs",
+            prototypePagePath: "key-results/prototype/gerenciar-krs/gerenciar-kr.html"
+          },
+          {
+            status: "Em andamento",
+            functionality: "Parametrizar pesos",
+            requirement: "RQ004",
+            prototypeRepoPath: "key-results/parametrizar-pesos",
+            prototypePagePath: "key-results/prototype/parametrizar-pesos/parametrizar-pesos.html"
+          }
+        ]
+      },
+      {
+        status: "No radar",
+        name: "Rastreabilidade entre planos de ação",
+        documentationUrl: "",
+        prototypeRepoPath: "rastreabilidade-planos",
+        prototypePagePath: "rastreabilidade-planos/prototype/rastrear-plano.html",
+        sprintDeliveries: []
+      }
+    ];
+
+    const pagesBaseUrl = "https://monicamondo.github.io/prototypes-siga/";
+    const repositoryBaseUrl = "https://github.com/monicamondo/prototypes-siga/tree/main/";
+    const tableBody = document.getElementById("prototype-table-body");
+
+    const statusClassMap = {
+      "no radar": "status-dot--radar",
+      "em andamento": "status-dot--progress",
+      "aguardando aprovação": "status-dot--approval",
+      "aguardando aprovacao": "status-dot--approval",
+      "concluído": "status-dot--done",
+      "concluido": "status-dot--done"
+    };
+
+    const resolveUrl = (path, baseUrl) => {
+      if (!path) return "";
+      if (/^https?:\/\//i.test(path)) return path;
+      return new URL(path, baseUrl).toString();
+    };
+
+    const normalizeStatus = (status) => (status || "").trim().toLowerCase();
+
+    const isPrototypeDisabledForStatus = (status) => {
+      const normalized = normalizeStatus(status);
+      return normalized === "em andamento" || normalized === "no radar";
+    };
+
+    const renderLinkCell = (label, url, extraClass = "") => {
+      if (!url) {
+        return `<span class="catalog-placeholder">${label}</span>`;
+      }
+
+      const className = ["catalog-link", extraClass].filter(Boolean).join(" ");
+
+      return `
+        <a class="${className}" href="${url}" target="_blank" rel="noreferrer">
+          ${label}
+        </a>
+      `;
+    };
+
+    const renderActionButton = (label, url, extraClass = "", disabled = false, disabledTitle = "") => {
+      const className = ["catalog-link", "catalog-button", extraClass].filter(Boolean).join(" ");
+
+      if (!url || disabled) {
+        const title = disabledTitle || (disabled ? "Indisponível para este status" : "");
+        return `<span class="${className} catalog-button--disabled" aria-disabled="true" ${title ? `title="${title}"` : ""}>${label}</span>`;
+      }
+
+      return `<a class="${className}" href="${url}" target="_blank" rel="noreferrer">${label}</a>`;
+    };
+
+    const renderStatusDot = (status) => {
+      const normalizedStatus = normalizeStatus(status);
+      const statusClass = statusClassMap[normalizedStatus] || "status-dot--placeholder";
+      const statusLabel = status && status !== "Preencher" ? status : "Status pendente";
+
+      return `<span class="status-dot ${statusClass}" title="${statusLabel}" aria-label="${statusLabel}"></span>`;
+    };
+
+    const renderSprintDeliveries = (sprintDeliveries, demandId) => {
+      if (!Array.isArray(sprintDeliveries) || sprintDeliveries.length === 0) {
+        return "";
+      }
+
+      return sprintDeliveries.map((delivery, index) => {
+        const repoUrl = resolveUrl(delivery.prototypeRepoPath, repositoryBaseUrl);
+        const prototypeUrl = resolveUrl(delivery.prototypePagePath, pagesBaseUrl);
+        const isDisabled = isPrototypeDisabledForStatus(delivery.status);
+
+        return `
+          <tr class="catalog-row catalog-row--sub" data-parent="${demandId}" ${index === 0 ? `id="${demandId}"` : ""} hidden>
+            <td data-label="Status">${renderStatusDot(delivery.status)}</td>
+            <td data-label="Nome">
+              <div class="catalog-subname">
+                <span class="catalog-subname__badge">Sprint</span>
+                <span class="catalog-subname__text">${delivery.functionality}</span>
+              </div>
+            </td>
+            <td data-label="Documentação Requisito">${delivery.requirement}</td>
+            <td data-label="Repositório GitHub (html/css)">${renderLinkCell("Ver repositório", repoUrl)}</td>
+            <td data-label="Protótipo navegável">${renderActionButton("Acessar", prototypeUrl, "catalog-button--subtle", isDisabled)}</td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    const renderMainRow = (entry, demandId) => {
+      const repositoryUrl = resolveUrl(entry.prototypeRepoPath, repositoryBaseUrl);
+      const prototypeUrl = resolveUrl(entry.prototypePagePath, pagesBaseUrl);
+      const documentationCell = renderLinkCell("Acessar documentação", entry.documentationUrl);
+      const repositoryCell = renderLinkCell("Ver repositório", repositoryUrl);
+      const hasSprintDeliveries = Array.isArray(entry.sprintDeliveries) && entry.sprintDeliveries.length > 0;
+      const isDisabled = isPrototypeDisabledForStatus(entry.status);
+
+      const prototypeCell = hasSprintDeliveries
+        ? `
+          <button
+            class="catalog-button catalog-button--subtle catalog-expand-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="${demandId}"
+            data-target="${demandId}">
+            Ver sprints
+          </button>
+        `
+        : renderActionButton("Acessar", prototypeUrl, "catalog-button--subtle", isDisabled);
+
+      return `
+        <tr class="catalog-row ${hasSprintDeliveries ? "catalog-row--expandable" : ""}" data-demand-id="${demandId}">
+          <td data-label="Status">${renderStatusDot(entry.status)}</td>
+          <td data-label="Nome">
+            <div class="catalog-name-cell">
+              ${hasSprintDeliveries ? `
+                <button
+                  class="catalog-accordion-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="${demandId}"
+                  data-target="${demandId}">
+                  <span class="catalog-accordion-toggle__icon" aria-hidden="true"></span>
+                  <span class="catalog-accordion-toggle__label">${entry.name}</span>
+                </button>
+              ` : `
+                <span class="catalog-name-label">${entry.name}</span>
+              `}
+            </div>
+          </td>
+          <td data-label="Documentação">${documentationCell}</td>
+          <td data-label="Repositório<br>GitHub">${repositoryCell}</td>
+          <td data-label="Protótipo Navegável">${prototypeCell}</td>
+        </tr>
+      `;
+    };
+
+    demandEntries.forEach((entry) => {
+      const demandId = `demand-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      tableBody.insertAdjacentHTML("beforeend", renderMainRow(entry, demandId));
+
+      const sprintMarkup = renderSprintDeliveries(entry.sprintDeliveries, demandId);
+      if (sprintMarkup) tableBody.insertAdjacentHTML("beforeend", sprintMarkup);
+    });
+
+    const setExpandedState = (demandId, expanded) => {
+      document
+        .querySelectorAll(`[data-target="${demandId}"]`)
+        .forEach((control) => control.setAttribute("aria-expanded", String(expanded)));
+
+      document
+        .querySelectorAll(`tr[data-parent="${demandId}"]`)
+        .forEach((row) => (row.hidden = !expanded));
+
+      const mainRow = document.querySelector(`tr[data-demand-id="${demandId}"]`);
+      if (mainRow) mainRow.classList.toggle("is-expanded", expanded);
+    };
+
+    const toggleExpandedState = (demandId) => {
+      const anyVisible = Array.from(document.querySelectorAll(`tr[data-parent="${demandId}"]`))
+        .some((row) => !row.hidden);
+      setExpandedState(demandId, !anyVisible);
+    };
+
+    document.querySelectorAll("[data-target]").forEach((control) => {
+      control.addEventListener("click", () => {
+        const demandId = control.getAttribute("data-target");
+        toggleExpandedState(demandId);
+      });
+    });
+
+    document.getElementById("footer-year").textContent = String(new Date().getFullYear());
+
+    const devHelpModal = document.getElementById("dev-help-modal");
+    if (devHelpModal) {
+      const openDevHelp = () => {
+        devHelpModal.hidden = false;
+        document.body.style.overflow = "hidden";
+        const closeButton = devHelpModal.querySelector(".dev-help-modal__close");
+        if (closeButton) closeButton.focus();
+      };
+
+      const closeDevHelp = () => {
+        devHelpModal.hidden = true;
+        document.body.style.overflow = "";
+      };
+
+      document.querySelectorAll("[data-open-dev-help]").forEach((button) => {
+        button.addEventListener("click", openDevHelp);
+      });
+
+      devHelpModal.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.matches("[data-close-dev-help]")) closeDevHelp();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !devHelpModal.hidden) closeDevHelp();
+      });
+    }
+  </script>
+</body>
+
+</html>
