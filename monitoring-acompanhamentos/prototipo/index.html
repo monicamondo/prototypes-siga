@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitoramento de Acompanhamentos — SIGA</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- DS SIGA Tokens + Estilos da tela -->
+  <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body class="sg-page-bg">
+
+  <!--
+  ================================================================
+  PROTÓTIPO — Tela de Monitoramento de Acompanhamentos
+  Conecta+ · SIGA · Angular v18 + Bootstrap 5
+  ================================================================
+  Componentes do DS utilizados:
+    • siga-header    → ds-siga/src/lib/components/header
+    • siga-navbar    → ds-siga/src/lib/components/navbar
+    • sg-pagination  → ds-siga/src/lib/components/pagination
+  ================================================================
+  -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       siga-header
+       Ref: ds-siga/src/lib/components/header/header.component
+       Story: SIGA/Componentes/Header › Visual Padrão
+  ══════════════════════════════════════════════════════════ -->
+  <header class="siga-header">
+    <div class="header-left">
+      <!-- Logo -->
+      <div class="brand">
+        <img src="../../../ds-siga/public/latam-logo.png" alt="LATAM Airlines" class="brand-logo" />
+      </div>
+
+      <!-- Módulo -->
+      <div class="header-item selectable">
+        <span class="value">CONECTA+</span>
+        <i class="fa-solid fa-caret-down caret-icon"></i>
+      </div>
+
+      <!-- Aeroporto -->
+      <div class="header-item selectable">
+        <span class="value display-lg" id="header-airport">GRU</span>
+        <i class="fa-solid fa-caret-down caret-icon"></i>
+      </div>
+
+      <!-- Dia da semana / data -->
+      <div class="header-item dual-line">
+        <span class="top-line bold" id="header-weekday">—</span>
+        <span class="bottom-line" id="header-date">—</span>
+      </div>
+
+      <!-- Hora local -->
+      <div class="header-item dual-line">
+        <span class="top-line display-md" id="header-time-local">—</span>
+        <span class="bottom-line">Local Time</span>
+      </div>
+
+      <!-- Hora UTC -->
+      <div class="header-item dual-line">
+        <span class="top-line display-md" id="header-time-utc">—</span>
+        <span class="bottom-line">UTC Time</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Idioma -->
+      <div class="header-item selectable">
+        <i class="fa-solid fa-globe action-icon"></i>
+        <span class="value">PT</span>
+        <i class="fa-solid fa-caret-down caret-icon"></i>
+      </div>
+
+      <!-- Usuário -->
+      <div class="header-item selectable user-dropdown">
+        <i class="fa-solid fa-user action-icon user-icon"></i>
+        <div class="dual-line user-details">
+          <span class="top-line bold">Gerente de Voo</span>
+          <span class="bottom-line">LATAM</span>
+        </div>
+        <i class="fa-solid fa-caret-down caret-icon"></i>
+      </div>
+    </div>
+  </header>
+  <!-- ══ /siga-header ══ -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       siga-navbar
+       Ref: ds-siga/src/lib/components/navbar/navbar.component
+       Story: SIGA/Componentes/Navbar Sub-header › Flight Control
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="siga-navbar">
+    <ul class="nav-left">
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fa-solid fa-plane-arrival"></i>
+          <span>Flight Connection</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fa-solid fa-route"></i>
+          <span>WorkFlow</span>
+        </a>
+      </li>
+      <!-- Item ativo: Monitoring Flow -->
+      <li class="nav-item active">
+        <a class="nav-link">
+          <i class="fa-solid fa-eye"></i>
+          <span>Monitoring Flow</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="nav-right">
+      <li class="nav-item right-item">
+        <a class="nav-link">
+          <i class="fa-solid fa-cog"></i>
+          <span>Configurações</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- ══ /siga-navbar ══ -->
+
+
+  <!-- ================================================================
+       CORPO DA PÁGINA — escopo do protótipo
+  ================================================================ -->
+  <main class="sg-page-content">
+
+    <!-- ── CABEÇALHO DA TELA ── -->
+    <div class="sg-screen-header d-flex align-items-center justify-content-between mb-2">
+      <div>
+        <h1 class="sg-screen-title mb-0">Monitoramento de Acompanhamentos</h1>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="sg-summary-chip" id="chip-total">
+          <i class="fa-solid fa-plane-up me-1"></i>
+          <span id="count-total">0</span> conexões
+        </span>
+        <span class="sg-summary-chip sg-summary-chip--warning">
+          <i class="fa-regular fa-clock me-1"></i>
+          <span id="count-waiting">0</span> aguardando
+        </span>
+        <span class="sg-summary-chip sg-summary-chip--danger">
+          <i class="fa-solid fa-triangle-exclamation me-1"></i>
+          <span id="count-pax">0</span> PAX n/e
+        </span>
+      </div>
+    </div>
+
+    <!-- ── FILTROS ── -->
+    <div class="sg-filters-bar mb-2">
+      <div class="sg-filters-inner">
+        <div class="d-flex flex-wrap align-items-end gap-4">
+
+          <!-- Voo -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Voo</label>
+            <input type="text" id="filter-voo" class="sg-input" placeholder="Ex: LA3100" autocomplete="off" />
+          </div>
+
+          <!-- De -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">De</label>
+            <select id="filter-hora-de" class="sg-select sg-select-period">
+              <option value="" selected>—</option>
+              <option value="-3">−3h</option>
+              <option value="-2">−2h</option>
+              <option value="-1">−1h</option>
+            </select>
+          </div>
+
+          <!-- Até -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Até</label>
+            <select id="filter-hora-ate" class="sg-select sg-select-period">
+              <option value="" selected>—</option>
+              <option value="1">+1h</option>
+              <option value="2">+2h</option>
+              <option value="3">+3h</option>
+            </select>
+          </div>
+
+          <!-- Agente Responsável -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Agente Responsável</label>
+            <input type="text" id="filter-agente" class="sg-input" placeholder="Nome" autocomplete="off" />
+          </div>
+
+          <!-- Status -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Status</label>
+            <select id="filter-status" class="sg-select">
+              <option value="">Todos</option>
+              <option value="aguardando">Aguardando</option>
+              <option value="em_percurso">Em percurso</option>
+              <option value="concluido">Concluído</option>
+              <option value="pax_nao_encontrado">PAX não encontrado</option>
+            </select>
+          </div>
+
+          <!-- Tipo de Conexão -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Tipo de Conexão</label>
+            <select id="filter-tipo" class="sg-select">
+              <option value="">Todos</option>
+              <option value="RUN">RUN</option>
+              <option value="Short">Short</option>
+            </select>
+          </div>
+
+          <!-- Origem -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Origem</label>
+            <input type="text" id="filter-origem" class="sg-input sg-input--short" placeholder="GRU"
+              autocomplete="off" />
+          </div>
+
+          <!-- Destino -->
+          <div class="sg-filter-field">
+            <label class="sg-filter-label">Destino</label>
+            <input type="text" id="filter-destino" class="sg-input sg-input--short" placeholder="MAO"
+              autocomplete="off" />
+          </div>
+
+          <!-- Ações -->
+          <div class="sg-filter-field sg-filter-actions">
+            <button class="sg-btn sg-btn--ghost" id="btn-limpar">Limpar</button>
+            <button class="sg-btn sg-btn--primary" id="btn-filtrar">
+              <i class="fa-solid fa-magnifying-glass"></i> Buscar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TABELA ── -->
+    <div class="sg-table-wrapper">
+      <table class="sg-monitoring-table table table-hover mb-0" id="monitoring-table">
+        <thead class="sg-monitoring-table__head">
+          <!-- Linha de grupo: CHEGADA / PARTIDA -->
+          <tr class="sg-thead-group">
+            <th colspan="3" class="sg-th-group sg-th-group--chegada">
+              <i class="fa-solid fa-plane-arrival me-1"></i>CHEGADA
+            </th>
+            <th colspan="3" class="sg-th-group sg-th-group--partida">
+              <i class="fa-solid fa-plane-departure me-1"></i>PARTIDA
+            </th>
+            <!-- Colunas neutras: mescladas com rowspan=2 na linha abaixo -->
+            <th rowspan="2" class="col-tipo sg-th-neutral">Tipo</th>
+            <th rowspan="2" class="col-agente sg-th-neutral">Agente</th>
+            <th rowspan="2" class="col-hitos sg-th-neutral">
+              Hitos de Acompanhamento
+              <span class="sg-hitos-legend ms-2">
+                <span class="sg-hito-dot sg-hito-dot--ok" data-bs-toggle="tooltip" title="Concluído"></span>
+                <span class="sg-hito-dot sg-hito-dot--aguardando" data-bs-toggle="tooltip" title="Aguardando"></span>
+                <span class="sg-hito-dot sg-hito-dot--ignorado" data-bs-toggle="tooltip" title="Ignorado"></span>
+                <span class="sg-hito-dot sg-hito-dot--pax_nao_encontrado" data-bs-toggle="tooltip"
+                  title="PAX não encontrado"></span>
+                <span class="sg-hito-dot sg-hito-dot--cancelado" data-bs-toggle="tooltip" title="Cancelado"></span>
+              </span>
+            </th>
+            <th rowspan="2" class="col-progresso sg-th-neutral">Progresso</th>
+          </tr>
+          <tr>
+            <!-- Grupo CHEGADA -->
+            <th class="col-voo-chegada sg-th-chegada">Voo / Origem</th>
+            <th class="sg-th-chegada col-tempos">Horário</th>
+            <th class="sg-th-chegada col-gate">Gate</th>
+
+            <!-- Grupo PARTIDA -->
+            <th class="col-voo-partida sg-th-partida">Voo / Destino</th>
+            <th class="sg-th-partida col-tempos">Horário</th>
+            <th class="sg-th-partida col-gate">Gate</th>
+          </tr>
+        </thead>
+        <tbody id="monitoring-tbody">
+          <!-- Gerado por app.js -->
+        </tbody>
+      </table>
+
+      <div id="empty-state" class="sg-empty-state d-none">
+        <i class="fa-solid fa-plane-slash"></i>
+        <p>Nenhum acompanhamento encontrado para os filtros selecionados.</p>
+      </div>
+    </div>
+    <!-- ── /TABELA ── -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         sg-pagination
+         Ref: ds-siga/src/lib/components/pagination/pagination.component
+         Story: SIGA/Componentes/Pagination
+    ══════════════════════════════════════════════════════════ -->
+    <div class="sg-pagination-container" role="navigation" aria-label="Paginação">
+      <nav aria-label="Páginas">
+        <ul class="sg-pagination" id="pagination-list">
+          <!-- Gerado por app.js -->
+        </ul>
+      </nav>
+
+      <div class="sg-items-per-page">
+        <span class="sg-total-label" id="pagination-total-label">— itens</span>
+        <select class="sg-page-size-select" id="pagination-page-size">
+          <option value="10">10</option>
+          <option value="20" selected>20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+    </div>
+    <!-- ══ /sg-pagination ══ -->
+
+    <!-- Rodapé de atualização -->
+    <div class="sg-update-footer">
+      <span id="last-update-label" class="text-muted small">Última atualização: —</span>
+    </div>
+
+  </main>
+  <!-- ── /CORPO DA PÁGINA ── -->
+
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

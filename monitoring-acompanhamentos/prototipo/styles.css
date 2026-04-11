@@ -1,0 +1,1159 @@
+/*
+================================================================
+SIGA Design System — Tokens
+Fonte: ds-siga/src/lib/tokens/variables.scss
+================================================================
+*/
+:root {
+  /* ── BRAND ── */
+  --siga-brand-primary: #12379C;
+  --siga-brand-destaque: #56C0D8;
+  --siga-brand-header-top: #1B0088;
+  --siga-brand-header-bottom: #150067;
+  --siga-brand-red: #EF2A5E;
+  --siga-brand-red-mid: #ED1650;
+  --siga-brand-red-active: #A50D36;
+  --siga-brand-red-active-dark: #960C31;
+
+  /* ── SEMANTIC ── */
+  --siga-info: #56C0D8;
+  --siga-success: #198754;
+  --siga-danger: #DC3545;
+  --siga-warning: #FFC107;
+
+  /* ── TEXT ── */
+  --siga-text-primary: #0A0A0A;
+  --siga-text-secondary: #424242;
+  --siga-text-tertiary: #757575;
+  --siga-text-disabled: #C2C2C2;
+  --siga-text-white: #FFFFFF;
+
+  /* ── GRAY ── */
+  --siga-gray-100: #F9F9F9;
+  --siga-gray-200: #F0F0F0;
+  --siga-gray-300: #E0E0E0;
+  --siga-gray-400: #C2C2C2;
+  --siga-gray-500: #9E9E9E;
+  --siga-gray-600: #757575;
+  --siga-gray-700: #424242;
+  --siga-gray-800: #212121;
+
+  /* ── BLUE ── */
+  --siga-blue-100: #EEF2FC;
+  --siga-blue-200: #D8E5FC;
+  --siga-blue-300: #B4D2F9;
+  --siga-blue-500: #5E93EC;
+  --siga-blue-700: #12379C;
+  --siga-blue-700-rgb: 18, 55, 156;
+
+  /* ── CYAN ── */
+  --siga-cyan-500: #56C0D8;
+
+  /* ── GREEN ── */
+  --siga-green-100: #F8FFFA;
+  --siga-green-200: #C6E0CE;
+  --siga-green-500: #188038;
+
+  /* ── RED ── */
+  --siga-red-100: #FFEBEB;
+  --siga-red-200: #F6BCBA;
+  --siga-red-500: #D93025;
+
+  /* ── ORANGE ── */
+  --siga-orange-100: #FFF4E6;
+  --siga-orange-200: #FFE2BF;
+  --siga-orange-300: #FFCC99;
+  --siga-orange-700: #D06800;
+
+  /* ── YELLOW ── */
+  --siga-yellow-100: #FFF3CD;
+  --siga-yellow-200: #FFE69C;
+  --siga-yellow-500: #FFC107;
+  --siga-yellow-700: #997404;
+
+  /* ── TIPOGRAFIA ── */
+  --siga-font-family: Arial, Helvetica, "Lucida Sans", FreeSans, sans-serif;
+  --siga-font-size-xs: 10px;
+  --siga-font-size-sm: 12px;
+  --siga-font-size-md: 14px;
+  --siga-font-size-base: 16px;
+  --siga-font-weight-regular: 400;
+  --siga-font-weight-bold: 700;
+
+  /* ── ESPAÇAMENTO ── */
+  --siga-space-1: 4px;
+  --siga-space-2: 8px;
+  --siga-space-3: 12px;
+  --siga-space-4: 16px;
+  --siga-space-6: 24px;
+
+  /* ── BORDAS / RAIO ── */
+  --siga-radius-sm: 4px;
+  --siga-radius-md: 8px;
+  --siga-radius-pill: 100px;
+
+  /* ── SOMBRAS ── */
+  --siga-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --siga-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --siga-shadow-focus: 0 0 0 3px rgba(18, 55, 156, 0.25);
+
+  /* ── SUPERFÍCIES ── */
+  --siga-bg: var(--siga-gray-100);
+  --siga-surface: #FFFFFF;
+  --siga-divider: var(--siga-gray-300);
+  --siga-border: #C2C2C2;
+}
+
+/* ================================================================
+   BASE
+================================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--siga-font-family);
+  font-size: var(--siga-font-size-md);
+  color: var(--siga-text-primary);
+  background: var(--siga-bg);
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================================================
+   siga-header
+   Ref: ds-siga/src/lib/components/header/header.component.scss
+================================================================ */
+.siga-header {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--siga-brand-header-top) 0%, var(--siga-brand-header-bottom) 100%);
+  color: var(--siga-text-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-family: var(--siga-font-family);
+  box-sizing: border-box;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.header-left {
+  gap: 32px;
+}
+
+.header-right {
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.brand-logo {
+  height: 32px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.header-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: var(--siga-text-white);
+  cursor: default;
+}
+
+.header-item.selectable {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.header-item.selectable:hover {
+  opacity: 0.8;
+}
+
+.value {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.display-md {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.display-lg {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.caret-icon {
+  font-size: 10px;
+  margin-left: 6px;
+  opacity: 0.9;
+}
+
+.action-icon {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.dual-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.top-line {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.top-line.display-md {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.bottom-line {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.user-dropdown {
+  gap: 4px;
+}
+
+.user-icon {
+  margin-right: 6px;
+}
+
+.user-details {
+  align-items: flex-start;
+  margin-right: 4px;
+}
+
+/* ================================================================
+   siga-navbar
+   Ref: ds-siga/src/lib/components/navbar/navbar.component.scss
+================================================================ */
+.siga-navbar {
+  width: 100%;
+  background: linear-gradient(to bottom, var(--siga-brand-red) 0%, var(--siga-brand-red) 50%, var(--siga-brand-red-mid) 50%, var(--siga-brand-red-mid) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--siga-font-family);
+  height: 52px;
+  box-sizing: border-box;
+}
+
+.siga-navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  height: 100%;
+}
+
+.nav-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-left .nav-item:first-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-right .nav-item {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  height: 100%;
+  color: var(--siga-text-white);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-link i {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.nav-link span {
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-item.active {
+  background: linear-gradient(to bottom, var(--siga-brand-red-active) 0%, var(--siga-brand-red-active) 50%, var(--siga-brand-red-active-dark) 51%, var(--siga-brand-red-active-dark) 100%);
+}
+
+.nav-item:hover:not(.active) {
+  background: var(--siga-surface);
+}
+
+.nav-item:hover:not(.active) .nav-link {
+  color: var(--siga-brand-red-mid);
+}
+
+.right-item .nav-link i {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+/* ================================================================
+   sg-pagination
+   Ref: ds-siga/src/lib/components/pagination/pagination.component.scss
+================================================================ */
+.sg-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: var(--siga-space-6) 0 var(--siga-space-4);
+}
+
+.sg-items-per-page {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--siga-space-2);
+}
+
+.sg-total-label {
+  font-size: var(--siga-font-size-sm);
+  color: var(--siga-gray-600);
+  white-space: nowrap;
+  font-family: var(--siga-font-family);
+}
+
+.sg-page-size-select {
+  font-size: var(--siga-font-size-sm);
+  padding: 2px 4px;
+  border: 1px solid var(--siga-border);
+  border-radius: var(--siga-radius-sm);
+  color: var(--siga-text-primary);
+  background: var(--siga-surface);
+  cursor: pointer;
+  font-family: var(--siga-font-family);
+  height: 30px;
+}
+
+.sg-page-size-select:focus {
+  outline: none;
+  box-shadow: var(--siga-shadow-focus);
+}
+
+.sg-pagination {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: var(--siga-space-1);
+}
+
+.sg-page-item.disabled .sg-page-link {
+  color: var(--siga-gray-400);
+  cursor: default;
+  pointer-events: none;
+}
+
+.sg-page-item.active .sg-page-link {
+  background: var(--siga-blue-700);
+  color: var(--siga-text-white);
+  font-weight: var(--siga-font-weight-bold);
+}
+
+.sg-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  font-size: var(--siga-font-size-sm);
+  border: none;
+  border-radius: var(--siga-radius-sm);
+  background: transparent;
+  color: var(--siga-blue-700);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  font-family: var(--siga-font-family);
+}
+
+.sg-page-link:hover:not(:disabled) {
+  background: var(--siga-blue-100);
+}
+
+.sg-page-link:disabled {
+  color: var(--siga-gray-400);
+  cursor: default;
+}
+
+/* ================================================================
+   CORPO DA PÁGINA
+================================================================ */
+.sg-page-content {
+  padding: 10px 12px;
+  background: var(--siga-bg);
+  min-height: calc(100vh - 112px);
+}
+
+.sg-update-footer {
+  text-align: right;
+  padding: 4px 0 8px;
+  font-family: var(--siga-font-family);
+}
+
+/* ================================================================
+   CABEÇALHO DA TELA
+================================================================ */
+
+.sg-screen-header {
+  height: 56px;
+  background-color: var(--siga-gray-100);
+}
+
+.sg-screen-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--siga-blue-700);
+  font-family: var(--siga-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.sg-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--siga-green-500);
+  animation: sg-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes sg-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+/* Chips de resumo */
+.sg-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--siga-blue-100);
+  color: var(--siga-blue-700);
+  border: 1px solid var(--siga-blue-200);
+  font-family: var(--siga-font-family);
+}
+
+.sg-summary-chip--warning {
+  background: var(--siga-yellow-100);
+  color: var(--siga-yellow-700);
+  border-color: var(--siga-yellow-200);
+}
+
+.sg-summary-chip--danger {
+  background: var(--siga-red-100);
+  color: var(--siga-red-500);
+  border-color: var(--siga-red-200);
+}
+
+/* ================================================================
+   FILTROS — estilo fiel ao sistema legado SIGA
+================================================================ */
+.sg-filters-bar {
+  background: var(--siga-gray-100);
+  padding: 6px 12px;
+}
+
+.sg-filters-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--siga-space-6);
+}
+
+.sg-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sg-filter-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--siga-text-secondary);
+  letter-spacing: 0.4px;
+  font-family: var(--siga-font-family);
+  white-space: nowrap;
+}
+
+.sg-filter-actions {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 4px;
+  padding-bottom: 1px;
+}
+
+/* Inputs e selects — estilo legado */
+.sg-input,
+.sg-select {
+  height: 26px;
+  font-size: 11px;
+  font-family: var(--siga-font-family);
+  color: var(--siga-text-primary);
+  background: var(--siga-surface);
+  border: 1px solid var(--siga-border);
+  border-radius: 2px;
+  padding: 0 6px;
+  outline: none;
+  min-width: 120px;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sg-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23757575'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  padding-right: 22px;
+}
+
+.sg-input:focus,
+.sg-select:focus {
+  border-color: var(--siga-blue-700);
+  box-shadow: 0 0 0 2px rgba(var(--siga-blue-700-rgb), 0.12);
+}
+
+.sg-input--short {
+  min-width: 60px;
+  width: 60px;
+}
+
+.sg-select-period {
+  min-width: 70px;
+  width: 70px;
+}
+
+/* Botões — estilo legado */
+.sg-btn {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-family: var(--siga-font-family);
+  font-weight: 700;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.sg-btn:hover {
+  opacity: 0.85;
+}
+
+.sg-btn--primary {
+  background: var(--siga-blue-700);
+  border-color: var(--siga-blue-700);
+  color: var(--siga-text-white);
+}
+
+.sg-btn--ghost {
+  background: var(--siga-surface);
+  border-color: var(--siga-border);
+  color: var(--siga-text-secondary);
+}
+
+/* ================================================================
+   TABELA DE MONITORAMENTO — estilo legado SIGA
+================================================================ */
+.sg-table-wrapper {
+  background: var(--siga-surface);
+  border-radius: 0;
+  overflow-x: auto;
+}
+
+.sg-monitoring-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  font-family: var(--siga-font-family);
+  font-size: 11px;
+}
+
+/* ── Linha de grupo CHEGADA / PARTIDA ── */
+.sg-thead-group .sg-th-group {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  text-align: center;
+  border-bottom: none;
+}
+
+.sg-th-group--chegada {
+  background: var(--siga-orange-100) !important;
+  /* orange/100 */
+  color: var(--siga-orange-700) !important;
+}
+
+.sg-th-group--partida {
+  background: var(--siga-blue-100) !important;
+  /* blue/100 */
+  color: var(--siga-blue-700) !important;
+}
+
+/* Células de colunas neutras — mescladas com rowspan=2 */
+.sg-th-neutral {
+  background: var(--siga-gray-100) !important;
+  color: var(--siga-text-tertiary);
+  vertical-align: middle !important;
+}
+
+/* Cabeçalho de colunas */
+.sg-monitoring-table__head th {
+  background: var(--siga-gray-100);
+  color: var(--siga-text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 5px 8px;
+  border: none;
+  border-bottom: 1px solid var(--siga-gray-300);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  vertical-align: middle;
+}
+
+/* Larguras de coluna */
+.col-voo-chegada {
+  width: 80px;
+}
+
+.col-voo-partida {
+  width: 80px;
+}
+
+.col-tempos {
+  width: 88px;
+}
+
+.col-gate {
+  width: 64px;
+}
+
+.col-tipo {
+  width: 64px;
+}
+
+.col-agente {
+  width: 130px;
+}
+
+.col-hitos {
+  /* flex — ocupa o restante */
+}
+
+.col-progresso {
+  width: 148px;
+}
+
+/* Células — apenas divisão horizontal, sem bordas laterais */
+.sg-monitoring-table tbody td {
+  padding: 4px 8px;
+  vertical-align: middle;
+  border: none;
+  border-bottom: 1px solid var(--siga-divider);
+  font-size: 11px;
+  color: var(--siga-text-primary);
+}
+
+/* Linha da tabela */
+.sg-monitoring-table tbody tr {
+  transition: background 0.1s;
+}
+
+.sg-monitoring-table tbody tr:nth-child(even) {
+  background: var(--siga-gray-100);
+}
+
+.sg-monitoring-table tbody tr:hover td:not(.sg-col-chegada):not(.sg-col-partida) {
+  background: var(--siga-blue-100) !important;
+}
+
+/* Sem bordas coloridas por status */
+.sg-row--pax_nao_encontrado td:not(.sg-col-chegada):not(.sg-col-partida) {
+  background: var(--siga-red-100);
+}
+
+/* ── Blocos CHEGADA / PARTIDA ── */
+
+/* Cabeçalhos de coluna dentro dos grupos — bold #0a0a0a, sentence case */
+.sg-th-chegada {
+  background: var(--siga-orange-100) !important;
+  color: var(--siga-text-primary) !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.sg-th-partida {
+  background: var(--siga-blue-100) !important;
+  color: var(--siga-text-primary) !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+/* Células de dados — fundo colorido por grupo */
+.sg-col-chegada {
+  background: var(--siga-orange-100) !important;
+}
+
+.sg-col-partida {
+  background: var(--siga-blue-100) !important;
+}
+
+/* Hover preserva a tinta das colunas */
+.sg-monitoring-table tbody tr:hover td.sg-col-chegada {
+  background: var(--siga-orange-200) !important;
+}
+
+.sg-monitoring-table tbody tr:hover td.sg-col-partida {
+  background: var(--siga-blue-200) !important;
+}
+
+/* Sem bordas laterais coloridas entre grupos */
+
+/* ── Coluna TIPO ── */
+.sg-badge-tipo {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--siga-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.sg-badge-tipo--RUN {
+  background: var(--siga-danger);
+  color: var(--siga-text-white);
+}
+
+.sg-badge-tipo--Short {
+  background: var(--siga-warning);
+  color: var(--siga-gray-800);
+}
+
+/* ── Coluna VOO (chegada / partida) ── */
+.sg-voo-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--siga-blue-700);
+  cursor: default;
+  display: block;
+  font-family: var(--siga-font-family);
+}
+
+.sg-voo-airport {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--siga-text-tertiary);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-family: var(--siga-font-family);
+}
+
+/* ── Coluna TEMPOS ── */
+.sg-time-block {
+  font-family: var(--siga-font-family);
+  line-height: 1.25;
+}
+
+.sg-time-label {
+  font-size: 9px;
+  color: var(--siga-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: block;
+}
+
+.sg-time-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--siga-text-primary);
+  display: block;
+}
+
+.sg-time-value--delayed {
+  color: var(--siga-red-500);
+}
+
+/* ── Coluna GATE ── */
+.sg-gate {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--siga-text-primary);
+  font-family: var(--siga-font-family);
+  display: block;
+}
+
+.sg-gate-label {
+  font-size: 9px;
+  color: var(--siga-text-tertiary);
+  display: block;
+  text-transform: uppercase;
+}
+
+/* ── Coluna AGENTE ── */
+.sg-col-agente {
+  vertical-align: middle;
+}
+
+.sg-agente {
+  font-size: var(--siga-font-size-sm);
+  color: var(--siga-text-secondary);
+  font-family: var(--siga-font-family);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 128px;
+  display: block;
+}
+
+.sg-agente--secondary {
+  color: var(--siga-text-tertiary);
+  font-size: var(--siga-font-size-xs);
+  margin-top: 2px;
+}
+
+/* Badge "+N" para 3 ou mais agentes */
+.sg-agente-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3px;
+  padding: 1px 6px;
+  border-radius: var(--siga-radius-pill);
+  background: var(--siga-blue-100);
+  color: var(--siga-blue-700);
+  border: 1px solid var(--siga-blue-200);
+  font-size: var(--siga-font-size-xs);
+  font-weight: var(--siga-font-weight-bold);
+  font-family: var(--siga-font-family);
+  cursor: default;
+}
+
+/* ================================================================
+   HITOS — faixa de círculos fluidos
+================================================================ */
+.sg-hitos-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: nowrap;
+  min-height: 32px;
+}
+
+/* Cada hito é um círculo numerado */
+.sg-hito-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--siga-font-size-xs);
+  font-weight: var(--siga-font-weight-bold);
+  font-family: var(--siga-font-family);
+  cursor: default;
+  flex-shrink: 0;
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-decoration: none;
+}
+
+.sg-hito-dot:hover {
+  transform: scale(1.18);
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* Status do hito */
+.sg-hito-dot--ok {
+  background: var(--siga-green-500);
+  border-color: var(--siga-green-500);
+  color: var(--siga-text-white);
+}
+
+.sg-hito-dot--aguardando {
+  background: var(--siga-gray-200);
+  border-color: var(--siga-gray-300);
+  color: var(--siga-gray-600);
+}
+
+.sg-hito-dot--ignorado {
+  background: var(--siga-gray-300);
+  border-color: var(--siga-gray-400);
+  color: var(--siga-gray-500);
+  opacity: 0.8;
+}
+
+/* PAX não encontrado: vermelho com × */
+.sg-hito-dot--pax_nao_encontrado {
+  background: var(--siga-red-500);
+  border-color: var(--siga-red-500);
+  color: var(--siga-text-white);
+}
+
+/* Cancelado: cinza médio com traço — diferenciado do aguardando */
+.sg-hito-dot--cancelado {
+  background: var(--siga-gray-400);
+  border-color: var(--siga-gray-500);
+  color: var(--siga-gray-700);
+  opacity: 0.7;
+}
+
+/* Legenda no cabeçalho da coluna */
+.sg-hitos-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.sg-hitos-legend .sg-hito-dot {
+  width: 12px;
+  height: 12px;
+  border-width: 1px;
+  cursor: help;
+}
+
+/* Conector entre hitos */
+.sg-hito-connector {
+  flex: 0 0 8px;
+  height: 2px;
+  background: var(--siga-gray-300);
+  border-radius: 1px;
+}
+
+.sg-hito-connector--done {
+  background: var(--siga-green-500);
+}
+
+/* Hito atual — anel pulsante */
+.sg-hito-dot--current {
+  animation: sg-hito-pulse 2s ease-in-out infinite;
+}
+
+@keyframes sg-hito-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--siga-blue-700-rgb), 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px rgba(var(--siga-blue-700-rgb), 0.0);
+  }
+}
+
+/* ================================================================
+   PROGRESSO  (baseado em ds-siga/status-bar)
+================================================================ */
+.sg-progress-col {
+  min-width: 130px;
+  font-family: var(--siga-font-family);
+}
+
+.sg-progress-label {
+  font-size: var(--siga-font-size-xs);
+  color: var(--siga-text-tertiary);
+  text-transform: uppercase;
+  font-weight: var(--siga-font-weight-bold);
+  letter-spacing: 0.4px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.sg-progress-label strong {
+  color: var(--siga-text-primary);
+  font-size: var(--siga-font-size-sm);
+}
+
+.sg-progress-bar-wrap {
+  height: 5px;
+  background: var(--siga-gray-200);
+  border-radius: var(--siga-radius-pill);
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.sg-progress-bar-fill {
+  height: 100%;
+  border-radius: var(--siga-radius-pill);
+  transition: width 0.6s ease;
+}
+
+.sg-progress-bar-fill--em_percurso {
+  background: var(--siga-blue-700);
+}
+
+.sg-progress-bar-fill--concluido {
+  background: var(--siga-green-500);
+}
+
+.sg-progress-bar-fill--aguardando {
+  background: var(--siga-gray-400);
+}
+
+.sg-progress-bar-fill--pax_nao_encontrado {
+  background: var(--siga-red-500);
+}
+
+.sg-status-label {
+  font-size: var(--siga-font-size-xs);
+  font-weight: var(--siga-font-weight-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sg-status-label--aguardando {
+  color: var(--siga-gray-600);
+}
+
+.sg-status-label--em_percurso {
+  color: var(--siga-blue-700);
+}
+
+.sg-status-label--concluido {
+  color: var(--siga-green-500);
+}
+
+.sg-status-label--pax_nao_encontrado {
+  color: var(--siga-red-500);
+}
+
+/* ================================================================
+   ESTADO VAZIO
+================================================================ */
+.sg-empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--siga-text-tertiary);
+  font-family: var(--siga-font-family);
+}
+
+.sg-empty-state i {
+  font-size: 40px;
+  margin-bottom: 12px;
+  display: block;
+  opacity: 0.35;
+}
+
+.sg-empty-state p {
+  font-size: var(--siga-font-size-md);
+  margin: 0;
+}
+
+/* ================================================================
+   TOOLTIP DE HITO (Bootstrap tooltip customizado)
+================================================================ */
+.sg-hito-tooltip-content {
+  text-align: left;
+  font-family: var(--siga-font-family);
+}
+
+.sg-hito-tooltip-content .hito-nome {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.sg-hito-tooltip-content .hito-status {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.sg-hito-tooltip-content .hito-time {
+  font-size: 11px;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+/* VPI tooltip */
+.sg-voo-vpi-hint {
+  font-size: var(--siga-font-size-xs);
+  color: var(--siga-text-tertiary);
+  display: block;
+  margin-top: 1px;
+}
