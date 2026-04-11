@@ -24,19 +24,12 @@
 <body>
   <div class="page-shell">
     <header class="hero">
-      <div class="hero__product">
-        <img src="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/public/siga-logo.png" alt="Logo Siga"
-          class="hero__product-logo" />
-        <div class="hero__text">
-          <h1>Repositório de protótipos</h1>
-          <p class="hero__description">
-            Validação de interfaces gráficas.
-          </p>
-        </div>
-      </div>
-      <div class="hero__company">
-        <img src="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/public/logo-j-fundo-claro.svg" alt="JExperts"
-          class="hero__company-logo" />
+      <img src="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/public/siga-logo.png" alt="Logo Siga"
+        class="hero__logo" />
+      <div class="hero__content">
+        <h2 class="hero__description">
+          Biblioteca de protótipos navegáveis para validação de interfaces gráficas
+        </h2>
       </div>
     </header>
 
@@ -49,26 +42,70 @@
           </div>
         </div>
 
-        <div class="table-wrapper">
-          <table class="catalog-table">
-            <colgroup>
-              <col class="col-status" />
-              <col class="col-name" />
-              <col class="col-documentation" />
-              <col class="col-repository" />
-              <col class="col-prototype" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>Status</th>
-                <th>Nome</th>
-                <th>Documentação</th>
-                <th>Repositório<br>GitHub</th>
-                <th>Protótipo</th>
-              </tr>
-            </thead>
-            <tbody id="prototype-table-body"></tbody>
-          </table>
+        <!-- Componente de Abas Estilo Bootstrap/Angular -->
+        <div class="nav-tabs-wrapper">
+          <div class="nav-tabs" role="tablist">
+            <button class="nav-tab active" role="tab" aria-selected="true" data-platform="web">
+              Web
+            </button>
+            <button class="nav-tab" role="tab" aria-selected="false" data-platform="mobile">
+              Mobile
+            </button>
+          </div>
+        </div>
+
+        <!-- Wrapper Tabela Web -->
+        <div id="table-web">
+          <div class="table-wrapper">
+            <table class="catalog-table">
+              <colgroup>
+                <col class="col-status" />
+                <col class="col-name" />
+                <col class="col-documentation" />
+                <col class="col-repository" />
+                <col class="col-video" />
+                <col class="col-prototype" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Nome</th>
+                  <th>Documentação</th>
+                  <th>Repositório<br>GitHub</th>
+                  <th>Vídeo</th>
+                  <th>Protótipo</th>
+                </tr>
+              </thead>
+              <tbody id="prototype-table-body-web"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Wrapper Tabela Mobile -->
+        <div id="table-mobile" hidden>
+          <div class="table-wrapper">
+            <table class="catalog-table">
+              <colgroup>
+                <col class="col-status" />
+                <col class="col-name" />
+                <col class="col-documentation" />
+                <col class="col-repository" />
+                <col class="col-video" />
+                <col class="col-prototype" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Nome</th>
+                  <th>Documentação</th>
+                  <th>Repositório<br>GitHub</th>
+                  <th>Vídeo</th>
+                  <th>Protótipo</th>
+                </tr>
+              </thead>
+              <tbody id="prototype-table-body-mobile"></tbody>
+            </table>
+          </div>
         </div>
 
         <div class="status-legend" aria-label="Legenda de status">
@@ -90,14 +127,10 @@
           </span>
         </div>
       </section>
-      <div>
-        <p class="catalog-card__support">
-          Desenvolvedor Siga:<button class="catalog-help-link" type="button" data-open-dev-help> SAIBA MAIS</button>
-          sobre como
-          organizamos
-          as entregas do design.
-        </p>
-      </div>
+      <p class="catalog-card__support">
+        Desenvolvedor SIGA: <button class="catalog-help-link" type="button" data-open-dev-help>SAIBA MAIS</button> sobre
+        como organizamos as entregas do design.
+      </p>
     </main>
   </div>
 
@@ -145,73 +178,60 @@
   </div>
 
   <footer class="page-footer" aria-label="Rodapé">
-    <span>Núcleo de Design Jexperts - <span id="footer-year"></span></span>
+    <div class="footer-brand">
+      <img src="https://cdn.jsdelivr.net/gh/monicamondo/ds-siga@main/public/logo-j-fundo-claro.svg" alt="Logo JExperts"
+        class="footer-logo" />
+      <span> - Núcleo de Design - <span id="footer-year"></span></span>
+    </div>
   </footer>
 
   <!-- Script para adicionar linha na bilbioteca de protótipos -->
   <script>
-    const demandEntryTemplate = {
-      status: "Preencher",
-      name: "Preencher",
-      documentationUrl: "",
-      prototypeRepoPath: "demanda",
-      prototypePagePath: "demanda/index.html",
-      sprintDeliveries: [
+    // Estrutura de dados separada por plataforma
+    const demandData = {
+      web: [
         {
-          status: "Preencher",
-          functionality: "Preencher",
-          requirement: "Preencher",
-          prototypeRepoPath: "demanda/sprint-1",
-          prototypePagePath: "demanda/sprint-1/index.html"
+          status: "Em andamento",
+          name: "Monitoring Flow - Conexões",
+          documentationUrl: "https://docs.google.com/document/d/1LNb7OwdBoGBtDW_wEdZpQWZvx9qMsWjylWriSwujYgk/edit?usp=sharing",
+          videoUrl: "",
+          prototypeRepoPath: "",
+          prototypePagePath: "",
+          sprintDeliveries: []
+        },
+
+        {
+          status: "Concluído",
+          name: "Controle de Água",
+          documentationUrl: "https://docs.google.com/document/d/1o6nJv49j50eViPEH7Rn_hiUA7pIDT6cUCJNfCahMaHo/edit?usp=sharing",
+          videoUrl: "https://drive.google.com/file/d/11PdiOXL-LmHUfrLcW4gGcsEtdsus7qxm/view?usp=sharing",
+          prototypeRepoPath: "",
+          prototypePagePath: "https://www.figma.com/proto/2bY3JK2NK0xn4lnfrX9L5R/SIGA-Web?node-id=7876-49708&viewport=381%2C407%2C0.03&t=UK8VEjYCthpY3vtO-1&scaling=contain&content-scaling=fixed&starting-point-node-id=7876%3A49708&page-id=402%3A1652",
+          sprintDeliveries: []
+        },
+        {
+          status: "Concluído",
+          name: "Conecta+",
+          documentationUrl: "https://docs.google.com/document/d/1YlXm2NZ_czqCf1Vt5jYLIecmT6j6qURlA0ntKZgiUi0/edit?usp=sharing",
+          videoUrl: "https://drive.google.com/file/d/1NxLS2LCVRcBMMLMKyMp74TNGBcV97rEh/view?usp=sharing",
+          prototypeRepoPath: "",
+          prototypePagePath: "https://www.figma.com/proto/2bY3JK2NK0xn4lnfrX9L5R/SIGA-Web?node-id=6966-141657&viewport=1508%2C-3412%2C0.17&t=WQgGap4JhHYr3qUO-1&scaling=contain&content-scaling=fixed&starting-point-node-id=6966%3A141657&page-id=6966%3A139585",
+          sprintDeliveries: []
+        },
+
+      ],
+      mobile: [
+        {
+
+        },
+        {
+
         }
       ]
     };
 
-    // Atualize este array conforme os diretórios reais de cada demanda e sprint.
-    const demandEntries = [
-      {
-        status: "Concluído",
-        name: "Planos e Grupo de Ações",
-        documentationUrl: "https://siga.atlassian.net/wiki/spaces/QC/pages/4073881612",
-        prototypeRepoPath: "planos-grupos-acoes/prototype",
-        prototypePagePath: "https://www.figma.com/make/Q69aQLZGMWQVEv47PgeTCE/Vincular-Planos-de-A%C3%A7%C3%A3o-ao-Objetivo-estat%C3%A9gico--Copy-?fullscreen=1&t=PiPrwA1oAzQMv7GZ-1",
-        sprintDeliveries: []
-      },
-      {
-        status: "Em andamento",
-        name: "Key Results",
-        documentationUrl: "https://siga.atlassian.net/wiki/spaces/QC/pages/4084957192/RQ004+-+Criar+o+conceito+de+resultados+chave",
-        prototypeRepoPath: "key-results",
-        sprintDeliveries: [
-          {
-            status: "Aguardando aprovação",
-            functionality: "Gerenciar KRs",
-            requirement: "RQ004",
-            prototypeRepoPath: "key-results/gerenciar-krs",
-            prototypePagePath: "key-results/prototype/gerenciar-krs/gerenciar-kr.html"
-          },
-          {
-            status: "Em andamento",
-            functionality: "Parametrizar pesos",
-            requirement: "RQ004",
-            prototypeRepoPath: "key-results/parametrizar-pesos",
-            prototypePagePath: "key-results/prototype/parametrizar-pesos/parametrizar-pesos.html"
-          }
-        ]
-      },
-      {
-        status: "No radar",
-        name: "Rastreabilidade entre planos de ação",
-        documentationUrl: "",
-        prototypeRepoPath: "rastreabilidade-planos",
-        prototypePagePath: "rastreabilidade-planos/prototype/rastrear-plano.html",
-        sprintDeliveries: []
-      }
-    ];
-
     const pagesBaseUrl = "https://monicamondo.github.io/prototypes-siga/";
     const repositoryBaseUrl = "https://github.com/monicamondo/prototypes-siga/tree/main/";
-    const tableBody = document.getElementById("prototype-table-body");
 
     const statusClassMap = {
       "no radar": "status-dot--radar",
@@ -276,6 +296,7 @@
       return sprintDeliveries.map((delivery, index) => {
         const repoUrl = resolveUrl(delivery.prototypeRepoPath, repositoryBaseUrl);
         const prototypeUrl = resolveUrl(delivery.prototypePagePath, pagesBaseUrl);
+        const videoCell = renderLinkCell("Acessar vídeo", delivery.videoUrl);
         const isDisabled = isPrototypeDisabledForStatus(delivery.status);
 
         return `
@@ -289,6 +310,7 @@
             </td>
             <td data-label="Documentação Requisito">${delivery.requirement}</td>
             <td data-label="Repositório GitHub (html/css)">${renderLinkCell("Ver repositório", repoUrl)}</td>
+            <td data-label="Vídeo">${videoCell}</td>
             <td data-label="Protótipo navegável">${renderActionButton("Acessar", prototypeUrl, "catalog-button--subtle", isDisabled)}</td>
           </tr>
         `;
@@ -300,6 +322,7 @@
       const prototypeUrl = resolveUrl(entry.prototypePagePath, pagesBaseUrl);
       const documentationCell = renderLinkCell("Acessar documentação", entry.documentationUrl);
       const repositoryCell = renderLinkCell("Ver repositório", repositoryUrl);
+      const videoCell = renderLinkCell("Acessar vídeo", entry.videoUrl);
       const hasSprintDeliveries = Array.isArray(entry.sprintDeliveries) && entry.sprintDeliveries.length > 0;
       const isDisabled = isPrototypeDisabledForStatus(entry.status);
 
@@ -337,19 +360,48 @@
             </div>
           </td>
           <td data-label="Documentação">${documentationCell}</td>
-          <td data-label="Repositório<br>GitHub">${repositoryCell}</td>
+          <td data-label="Repositório GitHub">${repositoryCell}</td>
+          <td data-label="Vídeo">${videoCell}</td>
           <td data-label="Protótipo Navegável">${prototypeCell}</td>
         </tr>
       `;
     };
 
-    demandEntries.forEach((entry) => {
-      const demandId = `demand-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-      tableBody.insertAdjacentHTML("beforeend", renderMainRow(entry, demandId));
+    const renderCatalogs = () => {
+      // Configurar a tabela web
+      const tableBodyWeb = document.getElementById("prototype-table-body-web");
+      if (tableBodyWeb) {
+        tableBodyWeb.innerHTML = "";
+        const entriesWeb = demandData["web"] || [];
+        entriesWeb.forEach((entry) => {
+          const demandId = `demand-web-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+          tableBodyWeb.insertAdjacentHTML("beforeend", renderMainRow(entry, demandId));
+          const sprintMarkup = renderSprintDeliveries(entry.sprintDeliveries, demandId);
+          if (sprintMarkup) tableBodyWeb.insertAdjacentHTML("beforeend", sprintMarkup);
+        });
+      }
 
-      const sprintMarkup = renderSprintDeliveries(entry.sprintDeliveries, demandId);
-      if (sprintMarkup) tableBody.insertAdjacentHTML("beforeend", sprintMarkup);
-    });
+      // Configurar a tabela mobile
+      const tableBodyMobile = document.getElementById("prototype-table-body-mobile");
+      if (tableBodyMobile) {
+        tableBodyMobile.innerHTML = "";
+        const entriesMobile = demandData["mobile"] || [];
+        entriesMobile.forEach((entry) => {
+          const demandId = `demand-mobile-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+          tableBodyMobile.insertAdjacentHTML("beforeend", renderMainRow(entry, demandId));
+          const sprintMarkup = renderSprintDeliveries(entry.sprintDeliveries, demandId);
+          if (sprintMarkup) tableBodyMobile.insertAdjacentHTML("beforeend", sprintMarkup);
+        });
+      }
+
+      // Reinicializa event listeners de acordeão
+      document.querySelectorAll("[data-target]").forEach((control) => {
+        control.addEventListener("click", () => {
+          const demandId = control.getAttribute("data-target");
+          toggleExpandedState(demandId);
+        });
+      });
+    };
 
     const setExpandedState = (demandId, expanded) => {
       document
@@ -370,12 +422,37 @@
       setExpandedState(demandId, !anyVisible);
     };
 
-    document.querySelectorAll("[data-target]").forEach((control) => {
-      control.addEventListener("click", () => {
-        const demandId = control.getAttribute("data-target");
-        toggleExpandedState(demandId);
+    // Controle de Tabs (agora alterna a exibição das tabelas na mesma section)
+    document.querySelectorAll(".nav-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        // Remover classe ativa de todas as abas
+        document.querySelectorAll(".nav-tab").forEach(t => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+
+        // Adicionar classe ativa para a aba atual
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+
+        // Obter plataforma escolhida e esconder/mostrar as tabelas correspondentes
+        const platform = tab.getAttribute("data-platform");
+
+        const tableWeb = document.getElementById("table-web");
+        const tableMobile = document.getElementById("table-mobile");
+
+        if (platform === "web") {
+          if (tableWeb) tableWeb.hidden = false;
+          if (tableMobile) tableMobile.hidden = true;
+        } else if (platform === "mobile") {
+          if (tableWeb) tableWeb.hidden = true;
+          if (tableMobile) tableMobile.hidden = false;
+        }
       });
     });
+
+    // Renderização inicial
+    renderCatalogs();
 
     document.getElementById("footer-year").textContent = String(new Date().getFullYear());
 
