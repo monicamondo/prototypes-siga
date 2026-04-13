@@ -2,11 +2,11 @@
   --page-bg: #f3f4f6;
   --surface: #ffffff;
   --surface-muted: #f8fafc;
-  --text-main: #324566;
+  --text-main: #162033;
   --text-soft: #52607a;
   --border-soft: #d7ddea;
-  --brand: #232c34;
-  --brand-strong: #12379c;
+  --brand: #003b5c;
+  --brand-strong: #0c608f;
   --brand-contrast: #ffffff;
   --shadow-soft: 0 8px 12px rgba(151, 152, 153, 0.12);
 }
@@ -39,7 +39,10 @@ body {
 .hero {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #ffffff 0%, #eef6fb 100%);
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--surface);
   border: 1px solid rgba(0, 59, 92, 0.08);
   border-radius: 24px;
   box-shadow: var(--shadow-soft);
@@ -47,9 +50,29 @@ body {
 }
 
 .hero__logo {
+  height: 24px;
+  width: auto;
+}
+
+.hero__product {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.hero__product-logo {
   height: 35px;
   width: auto;
-  align-self: flex-start;
+  flex: 0 0 auto;
+  margin-top: 15px;
+}
+
+.hero__company-logo {
+  height: 30px;
+  width: auto;
+  flex: 0 0 auto;
+  opacity: 0.8;
 }
 
 .hero__eyebrow,
@@ -75,10 +98,12 @@ body {
 }
 
 .hero__description {
-  max-width: 900px;
+  max-width: 720px;
+  margin: 0;
   color: var(--text-soft);
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .content {
@@ -98,15 +123,57 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  padding: 32px 28px 24px 28px;
+  padding: 32px 28px 10px 28px;
+  background: var(--surface);
+}
+
+.nav-tabs-wrapper {
+  padding: 0 28px;
+  background: var(--surface);
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 32px;
   border-bottom: 1px solid var(--border-soft);
-  background: var(--surface-muted);
+}
+
+.nav-tab {
+  padding: 12px 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  font-family: inherit;
+}
+
+.nav-tab.active {
+  color: var(--brand-strong);
+}
+
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--brand-strong);
+}
+
+.nav-tab:hover {
+  color: var(--brand-strong);
 }
 
 .catalog-card__support {
-  padding: 10px 28px;
+  max-width: 900px;
+  margin-top: 25px;
+  margin-left: 25px;
   color: var(--text-soft);
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -155,13 +222,12 @@ body {
 }
 
 .catalog-table .col-documentation,
-.catalog-table .col-repository,
-.catalog-table .col-video {
-  width: 18%;
+.catalog-table .col-repository {
+  width: 20%;
 }
 
 .catalog-table .col-prototype {
-  width: 14%;
+  width: 16%;
 }
 
 .catalog-table th,
@@ -558,15 +624,31 @@ body {
   }
 
   .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
     padding: 24px 20px;
   }
 
-  .hero__brand {
+  .hero__product {
+    flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
   }
 
-  .hero__logo {
+  .hero__product-logo {
     height: 48px;
+  }
+
+  .hero__company {
+    order: -1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hero__company-logo {
+    height: 28px;
   }
 
   .catalog-card__header {
@@ -665,48 +747,19 @@ body {
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-}
 
-.nav-tabs-wrapper {
-  padding: 0 28px;
-  background: var(--surface-muted);
-}
-
-.nav-tabs {
-  display: flex;
-  gap: 16px;
-  border-bottom: 1px solid var(--border-soft);
-}
-
-.nav-tab {
-  padding: 12px 16px;
-  border: none;
-  background: transparent;
-  color: var(--text-soft);
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all 200ms ease;
-}
-
-.nav-tab:hover {
-  color: var(--brand-strong);
-}
-
-.nav-tab.active {
-  color: var(--brand-strong);
-  border-bottom: 2px solid var(--brand-strong);
+  .status-legend {
+    padding: 16px 20px 22px;
+  }
 }
 
 .page-footer {
   width: min(1200px, calc(100% - 32px));
-  margin: 24px auto 48px;
-  padding-top: 24px;
+  margin: 18px auto 32px;
+  padding-top: 14px;
   border-top: 1px solid rgba(0, 59, 92, 0.10);
   color: var(--text-soft);
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -714,10 +767,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
 }
 
 .footer-logo {
-  height: 24px;
+  height: 16px;
   width: auto;
+  margin-right: 4px;
 }
