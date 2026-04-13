@@ -62,10 +62,10 @@ const MOCK_DATA = [
     agentes: ['Tony Stark'],
     hitos: [
       { id: 1, nome: 'Desembarque',      status: 'pax_nao_encontrado', horario: '09:52' },
-      { id: 2, nome: 'Em percurso',      status: 'cancelado',          horario: null    },
-      { id: 3, nome: 'Raio-X',          status: 'cancelado',          horario: null    },
-      { id: 4, nome: 'Gate de Embarque', status: 'cancelado',          horario: null    },
-      { id: 5, nome: 'Embarque',         status: 'cancelado',          horario: null    },
+      { id: 2, nome: 'Em percurso',      status: 'aguardando',          horario: null    },
+      { id: 3, nome: 'Raio-X',          status: 'aguardando',          horario: null    },
+      { id: 4, nome: 'Gate de Embarque', status: 'aguardando',          horario: null    },
+      { id: 5, nome: 'Embarque',         status: 'aguardando',          horario: null    },
     ]
   },
 
@@ -137,9 +137,9 @@ const MOCK_DATA = [
     agentes: ['Diana Prince'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'ok',         horario: '10:17' },
-      { id: 2, nome: 'Em percurso', status: 'ok',         horario: '10:23' },
-      { id: 3, nome: 'Raio-X',     status: 'ignorado',   horario: '10:28' },
-      { id: 4, nome: 'Gate',        status: 'ok',         horario: '10:35' },
+      { id: 2, nome: 'Em percurso', status: 'pax_nao_encontrado', horario: '10:23' },
+      { id: 3, nome: 'Raio-X',     status: 'aguardando', horario: null    },
+      { id: 4, nome: 'Gate',        status: 'aguardando', horario: null    },
       { id: 5, nome: 'Embarque',    status: 'aguardando', horario: null    },
     ]
   },
@@ -299,7 +299,7 @@ const STATUS_ICON = {
 
 // Ícones dos hitos — mesma linguagem visual do mobile
 const HITO_STATUS_ICON = {
-  ok:                 'fa-solid fa-check',
+  ok:                 null,                    // exibe apenas o número (conforme solicitação)
   aguardando:         null,                    // exibe só o número
   ignorado:           'fa-solid fa-xmark',
   pax_nao_encontrado: 'fa-solid fa-xmark',     // vermelho (cor diferencia do ignorado)
@@ -310,8 +310,8 @@ const HITO_STATUS_ICON = {
 function calcProgresso(hitos) {
   const total = hitos.length;
   if (total === 0) return 0;
-  // PAX não encontrado: acompanhamento encerra em 100%
-  if (hitos[0] && hitos[0].status === 'pax_nao_encontrado') return 100;
+  // Se houver algum PAX não encontrado em qualquer etapa, progresso é 100% (encerrado)
+  if (hitos.some(h => h.status === 'pax_nao_encontrado')) return 100;
   const respondidos = hitos.filter(h =>
     h.status === 'ok' || h.status === 'ignorado'
   ).length;
@@ -321,7 +321,7 @@ function calcProgresso(hitos) {
 /** Deriva statusGeral a partir dos hitos */
 function deriveStatus(voo) {
   const h = voo.hitos;
-  if (h[0] && h[0].status === 'pax_nao_encontrado') return 'pax_nao_encontrado';
+  if (h.some(hito => hito.status === 'pax_nao_encontrado')) return 'pax_nao_encontrado';
   const p = calcProgresso(h);
   if (p === 100) return 'concluido';
   if (p > 0)     return 'em_percurso';
@@ -340,13 +340,23 @@ function horaComOffset(offsetH) {
   return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 }
 
+/** Formata nome do agente: Primeiro Nome + Inicial do Sobrenome (ex: Monica M.) */
+function formatAgentName(fullName) {
+  if (!fullName) return 'Agente';
+  const parts = fullName.split(' ');
+  if (parts.length === 1) return parts[0];
+  const firstName = parts[0];
+  const lastInitial = parts[parts.length - 1].charAt(0);
+  return `${firstName} ${lastInitial}.`;
+}
+
 // ── RENDER DA FAIXA DE HITOS ───────────────────────────────────
 
 function getFirstAguardandoIndex(hitos) {
   return hitos.findIndex(h => h.status === 'aguardando');
 }
 
-function renderHitosDot(hito, index, total, hitos) {
+function renderHitosDot(hito, index, total, hitos, agentName) {
   const iconClass = HITO_STATUS_ICON[hito.status];
 
   // Hito "atual" = primeiro aguardando após algum ok
@@ -361,11 +371,14 @@ function renderHitosDot(hito, index, total, hitos) {
     cancelado:          'Cancelado',
   }[hito.status];
 
+  const agentFormatted = formatAgentName(agentName);
+  const dateStr = new Date().toLocaleDateString('pt-BR');
+
   const tooltipHtml = `
     <div class="sg-hito-tooltip-content">
       <div class="hito-nome">${index + 1}. ${hito.nome}</div>
+      ${hito.horario ? `<div class="hito-time">${agentFormatted} - ${dateStr} - ${hito.horario}</div>` : ''}
       <div class="hito-status">${statusLabel}</div>
-      ${hito.horario ? `<div class="hito-time"><i class="fa-regular fa-clock"></i> ${hito.horario}</div>` : ''}
     </div>
   `.trim();
 
@@ -428,18 +441,30 @@ function renderAgentes(agentes) {
 // ── RENDER DE UMA LINHA DA TABELA ─────────────────────────────
 
 function renderRow(voo) {
-  const status     = deriveStatus(voo);
-  const progresso  = calcProgresso(voo.hitos);
-  const total      = voo.hitos.length;
-  const respondidos = voo.hitos.filter(h =>
+  // Regra PAX: se houver PAX n/e em qualquer hito, os subsequentes também assumem esse status
+  let hasPaxNE = false;
+  const normalizedHitos = voo.hitos.map(h => {
+    if (hasPaxNE) return { ...h, status: 'pax_nao_encontrado' };
+    if (h.status === 'pax_nao_encontrado') hasPaxNE = true;
+    return h;
+  });
+
+  const status     = deriveStatus({ ...voo, hitos: normalizedHitos });
+  const progresso  = calcProgresso(normalizedHitos);
+  const total      = normalizedHitos.length;
+  const respondidos = normalizedHitos.filter(h =>
     h.status === 'ok' || h.status === 'ignorado' || h.status === 'pax_nao_encontrado'
   ).length;
 
   const etaAtrasado = voo.eta > voo.sta;
   const etdAtrasado = voo.etd > voo.std;
 
-  const hitosHtml = voo.hitos
-    .map((h, i) => renderHitosDot(h, i, voo.hitos.length, voo.hitos))
+  const hitosHtml = normalizedHitos
+    .map((h, i) => {
+      // Simulação: se houver múltiplos agentes, distribuímos os hitos entre eles
+      const agenteSorteado = voo.agentes[i % voo.agentes.length];
+      return renderHitosDot(h, i, normalizedHitos.length, normalizedHitos, agenteSorteado);
+    })
     .join('');
 
   // Legenda de progresso: PAX n/e mostra texto diferente
