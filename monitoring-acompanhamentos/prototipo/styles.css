@@ -107,6 +107,9 @@ Fonte: ds-siga/src/lib/tokens/variables.scss
 /* ================================================================
    BASE
 ================================================================ */
+.sg-page-bg {
+  background: var(--siga-bg);
+}
 *,
 *::before,
 *::after {
@@ -463,28 +466,6 @@ body {
   font-family: var(--siga-font-family);
   text-transform: uppercase;
   letter-spacing: 0.3px;
-}
-
-.sg-live-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--siga-green-500);
-  animation: sg-pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes sg-pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.4;
-    transform: scale(0.75);
-  }
 }
 
 /* Chips de resumo */
@@ -1150,10 +1131,3 @@ body {
   margin-top: 2px;
 }
 
-/* VPI tooltip */
-.sg-voo-vpi-hint {
-  font-size: var(--siga-font-size-xs);
-  color: var(--siga-text-tertiary);
-  display: block;
-  margin-top: 1px;
-}
