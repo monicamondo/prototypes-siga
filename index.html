@@ -28,7 +28,7 @@
         class="hero__logo" />
       <div class="hero__content">
         <h2 class="hero__description">
-          Biblioteca de protótipos navegáveis para validação de interfaces gráficas
+          Protótipos navegáveis para validação de interfaces gráficas
         </h2>
       </div>
     </header>
@@ -71,7 +71,7 @@
                   <th>Status</th>
                   <th>Nome</th>
                   <th>Documentação</th>
-                  <th>Repositório<br>GitHub</th>
+                  <th>Repositório</th>
                   <th>Vídeo</th>
                   <th>Protótipo</th>
                 </tr>
@@ -296,7 +296,7 @@
       return sprintDeliveries.map((delivery, index) => {
         const repoUrl = resolveUrl(delivery.prototypeRepoPath, repositoryBaseUrl);
         const prototypeUrl = resolveUrl(delivery.prototypePagePath, pagesBaseUrl);
-        const videoCell = renderLinkCell("Acessar vídeo", delivery.videoUrl);
+        const videoCell = renderLinkCell("Assistir", delivery.videoUrl);
         const isDisabled = isPrototypeDisabledForStatus(delivery.status);
 
         return `
@@ -309,7 +309,7 @@
               </div>
             </td>
             <td data-label="Documentação Requisito">${delivery.requirement}</td>
-            <td data-label="Repositório GitHub (html/css)">${renderLinkCell("Ver repositório", repoUrl)}</td>
+            <td data-label="Repositório GitHub (html/css)">${renderLinkCell("Código Fonte", repoUrl)}</td>
             <td data-label="Vídeo">${videoCell}</td>
             <td data-label="Protótipo navegável">${renderActionButton("Acessar", prototypeUrl, "catalog-button--subtle", isDisabled)}</td>
           </tr>
@@ -320,9 +320,9 @@
     const renderMainRow = (entry, demandId) => {
       const repositoryUrl = resolveUrl(entry.prototypeRepoPath, repositoryBaseUrl);
       const prototypeUrl = resolveUrl(entry.prototypePagePath, pagesBaseUrl);
-      const documentationCell = renderLinkCell("Acessar documentação", entry.documentationUrl);
-      const repositoryCell = renderLinkCell("Ver repositório", repositoryUrl);
-      const videoCell = renderLinkCell("Acessar vídeo", entry.videoUrl);
+      const documentationCell = renderLinkCell("Ver", entry.documentationUrl);
+      const repositoryCell = renderLinkCell("Código Fonte", repositoryUrl);
+      const videoCell = renderLinkCell("Assistir", entry.videoUrl);
       const hasSprintDeliveries = Array.isArray(entry.sprintDeliveries) && entry.sprintDeliveries.length > 0;
       const isDisabled = isPrototypeDisabledForStatus(entry.status);
 

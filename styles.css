@@ -50,7 +50,7 @@ body {
 }
 
 .hero__logo {
-  height: 24px;
+  height: 35px;
   width: auto;
 }
 
@@ -214,20 +214,20 @@ body {
 }
 
 .catalog-table .col-status {
-  width: 78px;
+  width: 10%;
 }
 
 .catalog-table .col-name {
-  width: 36%;
+  width: 35%;
 }
 
 .catalog-table .col-documentation,
 .catalog-table .col-repository {
-  width: 20%;
+  width: 15%;
 }
 
 .catalog-table .col-prototype {
-  width: 16%;
+  width: 15%;
 }
 
 .catalog-table th,
