@@ -143,6 +143,7 @@
     <div class="sg-screen-header d-flex align-items-center justify-content-between mb-2">
       <div>
         <h1 class="sg-screen-title mb-0">Monitoramento de Acompanhamentos</h1>
+        <div id="monitoring-count" class="sg-monitoring-count">0 - itens</div>
       </div>
       <div class="d-flex align-items-center gap-2">
         <span class="sg-summary-chip" id="chip-total">
@@ -265,12 +266,19 @@
             <th rowspan="2" class="col-hitos sg-th-neutral">
               Hitos de Acompanhamento
               <span class="sg-hitos-legend ms-2">
-                <span class="sg-hito-dot sg-hito-dot--ok" data-bs-toggle="tooltip" title="Concluído"></span>
+                <span class="sg-hito-dot sg-hito-dot--ok" data-bs-toggle="tooltip" title="Concluído">
+                  <i class="fa-solid fa-check"></i>
+                </span>
                 <span class="sg-hito-dot sg-hito-dot--aguardando" data-bs-toggle="tooltip" title="Aguardando"></span>
-                <span class="sg-hito-dot sg-hito-dot--ignorado" data-bs-toggle="tooltip" title="Ignorado"></span>
-                <span class="sg-hito-dot sg-hito-dot--pax_nao_encontrado" data-bs-toggle="tooltip"
-                  title="PAX não encontrado"></span>
-                <span class="sg-hito-dot sg-hito-dot--cancelado" data-bs-toggle="tooltip" title="Cancelado"></span>
+                <span class="sg-hito-dot sg-hito-dot--ignorado" data-bs-toggle="tooltip" title="Ignorado">
+                  <i class="fa-solid fa-xmark"></i>
+                </span>
+                <span class="sg-hito-dot sg-hito-dot--pax_nao_encontrado" data-bs-toggle="tooltip" title="PAX não encontrado">
+                  <i class="fa-solid fa-xmark"></i>
+                </span>
+                <span class="sg-hito-dot sg-hito-dot--cancelado" data-bs-toggle="tooltip" title="Cancelado">
+                  <i class="fa-solid fa-minus"></i>
+                </span>
               </span>
             </th>
             <th rowspan="2" class="col-progresso sg-th-neutral">Progresso</th>
@@ -323,10 +331,7 @@
     </div>
     <!-- ══ /sg-pagination ══ -->
 
-    <!-- Rodapé de atualização -->
-    <div class="sg-update-footer">
-      <span id="last-update-label" class="text-muted small">Última atualização: —</span>
-    </div>
+
 
   </main>
   <!-- ── /CORPO DA PÁGINA ── -->

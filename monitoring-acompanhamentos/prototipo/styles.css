@@ -110,6 +110,7 @@ Fonte: ds-siga/src/lib/tokens/variables.scss
 .sg-page-bg {
   background: var(--siga-bg);
 }
+
 *,
 *::before,
 *::after {
@@ -123,6 +124,10 @@ body {
   background: var(--siga-bg);
   margin: 0;
   padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 /* ================================================================
@@ -354,6 +359,7 @@ body {
   position: relative;
   width: 100%;
   padding: var(--siga-space-6) 0 var(--siga-space-4);
+  flex-shrink: 0;
 }
 
 .sg-items-per-page {
@@ -441,14 +447,12 @@ body {
 .sg-page-content {
   padding: 10px 12px;
   background: var(--siga-bg);
-  min-height: calc(100vh - 112px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.sg-update-footer {
-  text-align: right;
-  padding: 4px 0 8px;
-  font-family: var(--siga-font-family);
-}
 
 /* ================================================================
    CABEÇALHO DA TELA
@@ -457,6 +461,7 @@ body {
 .sg-screen-header {
   height: 56px;
   background-color: var(--siga-gray-100);
+  flex-shrink: 0;
 }
 
 .sg-screen-title {
@@ -466,6 +471,13 @@ body {
   font-family: var(--siga-font-family);
   text-transform: uppercase;
   letter-spacing: 0.3px;
+}
+
+.sg-monitoring-count {
+  font-size: 13px;
+  color: var(--siga-blue-700);
+  font-family: var(--siga-font-family);
+  text-transform: lowercase;
 }
 
 /* Chips de resumo */
@@ -500,6 +512,7 @@ body {
 .sg-filters-bar {
   background: var(--siga-gray-100);
   padding: 6px 12px;
+  flex-shrink: 0;
 }
 
 .sg-filters-inner {
@@ -611,7 +624,8 @@ body {
 .sg-table-wrapper {
   background: var(--siga-surface);
   border-radius: 0;
-  overflow-x: auto;
+  overflow: auto;
+  flex: 1;
 }
 
 .sg-monitoring-table {
@@ -972,10 +986,11 @@ body {
 }
 
 .sg-hitos-legend .sg-hito-dot {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-width: 1px;
   cursor: help;
+  font-size: 10px;
 }
 
 /* Conector entre hitos */
@@ -1130,4 +1145,3 @@ body {
   opacity: 0.75;
   margin-top: 2px;
 }
-

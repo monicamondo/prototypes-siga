@@ -645,6 +645,7 @@ function updateSummary(data) {
   document.getElementById('count-total').textContent   = data.length;
   document.getElementById('count-waiting').textContent = data.filter(v => deriveStatus(v) === 'aguardando').length;
   document.getElementById('count-pax').textContent     = data.filter(v => deriveStatus(v) === 'pax_nao_encontrado').length;
+  document.getElementById('monitoring-count').textContent = `${data.length} - itens`;
 }
 
 // ── FILTROS ────────────────────────────────────────────────────
@@ -766,7 +767,6 @@ function simularAtualizacao() {
   if (!aguardando.length) return;
   aguardando[0].status  = 'ok';
   aguardando[0].horario = horaAgora();
-  document.getElementById('last-update-label').textContent = `Última atualização: ${horaAgora()}`;
   applyFilters();
 }
 
@@ -790,5 +790,4 @@ document.addEventListener('DOMContentLoaded', () => {
   updateHeaderClock();
   setInterval(updateHeaderClock, 30000);
   applyFilters();
-  document.getElementById('last-update-label').textContent = `Última atualização: ${horaAgora()}`;
 });
