@@ -252,16 +252,28 @@
     <div class="sg-table-wrapper">
       <table class="sg-monitoring-table table table-hover mb-0" id="monitoring-table">
         <thead class="sg-monitoring-table__head">
-          <!-- Linha de grupo: CHEGADA / PARTIDA -->
+          <!-- Linha de grupo: TIPO / CHEGADA / PARTIDA / colunas neutras -->
           <tr class="sg-thead-group">
+            <th rowspan="2" class="col-tipo sg-th-neutral">Tipo</th>
             <th colspan="3" class="sg-th-group sg-th-group--chegada">
               <i class="fa-solid fa-plane-arrival me-1"></i>CHEGADA
             </th>
             <th colspan="3" class="sg-th-group sg-th-group--partida">
               <i class="fa-solid fa-plane-departure me-1"></i>PARTIDA
             </th>
-            <!-- Colunas neutras: mescladas com rowspan=2 na linha abaixo -->
-            <th rowspan="2" class="col-tipo sg-th-neutral">Tipo</th>
+            <!-- Colunas neutras: mescladas com rowspan=2 -->
+            <th rowspan="2" class="col-pax sg-th-neutral">
+              PAX
+              <button class="sg-sort-btn" id="sort-pax" data-col="pax" data-dir="none" title="Ordenar por PAX">
+                <i class="fa-solid fa-sort"></i>
+              </button>
+            </th>
+            <th rowspan="2" class="col-bags sg-th-neutral">
+              Bags
+              <button class="sg-sort-btn" id="sort-bags" data-col="bags" data-dir="none" title="Ordenar por Bags">
+                <i class="fa-solid fa-sort"></i>
+              </button>
+            </th>
             <th rowspan="2" class="col-agente sg-th-neutral">Agente</th>
             <th rowspan="2" class="col-hitos sg-th-neutral">
               Hitos de Acompanhamento

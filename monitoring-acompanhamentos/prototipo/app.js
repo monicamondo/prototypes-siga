@@ -41,6 +41,8 @@ const MOCK_DATA = [
     sta: '09:30',         std: '10:45',
     eta: '09:35',         etd: '10:45',
     gateChegada: '25B',   gateEmbarque: '14C',
+    pax:  { encontrado: 6, total: 8 },
+    bags: { encontrado: 5, total: 7, esteira: 2 },
     agentes: ['Kate Austen'],
     hitos: [
       { id: 1, nome: 'Desembarque',  status: 'ok',         horario: '09:33' },
@@ -59,6 +61,8 @@ const MOCK_DATA = [
     sta: '09:50',         std: '11:20',
     eta: '10:10',         etd: '11:20',
     gateChegada: '12A',   gateEmbarque: '8',
+    pax:  { encontrado: 0, total: 3 },
+    bags: { encontrado: 1, total: 4, esteira: 1 },
     agentes: ['Tony Stark'],
     hitos: [
       { id: 1, nome: 'Desembarque',      status: 'pax_nao_encontrado', horario: '09:52' },
@@ -78,6 +82,8 @@ const MOCK_DATA = [
     sta: '09:55',         std: '11:00',
     eta: '09:50',         etd: '11:00',
     gateChegada: '7C',    gateEmbarque: '22',
+    pax:  { encontrado: 4, total: 4 },
+    bags: { encontrado: 6, total: 6, esteira: 0 },
     agentes: ['Peter Parker'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'ok', horario: '09:52' },
@@ -96,6 +102,8 @@ const MOCK_DATA = [
     sta: '10:00',         std: '11:30',
     eta: '10:00',         etd: '11:30',
     gateChegada: 'Rem. L', gateEmbarque: '201',
+    pax:  { encontrado: 3, total: 5 },
+    bags: { encontrado: 4, total: 8, esteira: 3 },
     agentes: ['Leia Organa'],
     hitos: [
       { id: 1, nome: 'Desembarque',         status: 'ok',         horario: '10:04' },
@@ -117,6 +125,8 @@ const MOCK_DATA = [
     sta: '10:05',         std: '11:10',
     eta: '10:05',         etd: '11:10',
     gateChegada: '4F',    gateEmbarque: '19',
+    pax:  { encontrado: 0, total: 6 },
+    bags: { encontrado: 0, total: 9, esteira: 0 },
     agentes: ['Clark Kent'],
     hitos: [
       { id: 1, nome: 'Desembarque',      status: 'aguardando', horario: null },
@@ -134,6 +144,8 @@ const MOCK_DATA = [
     sta: '10:10',         std: '11:25',
     eta: '10:15',         etd: '11:30',
     gateChegada: '22',    gateEmbarque: '5B',
+    pax:  { encontrado: 1, total: 4 },
+    bags: { encontrado: 2, total: 5, esteira: 1 },
     agentes: ['Diana Prince'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'ok',         horario: '10:17' },
@@ -153,6 +165,8 @@ const MOCK_DATA = [
     sta: '10:30',         std: '12:00',
     eta: '10:30',         etd: '12:00',
     gateChegada: '31',    gateEmbarque: '246',
+    pax:  { encontrado: 7, total: 10 },
+    bags: { encontrado: 9, total: 12, esteira: 4 },
     agentes: ['Bruce Wayne', 'Natasha Romanoff'],
     hitos: [
       { id: 1, nome: 'Desembarque',         status: 'ok',         horario: '10:33' },
@@ -176,6 +190,8 @@ const MOCK_DATA = [
     sta: '11:00',         std: '12:15',
     eta: '11:05',         etd: '12:15',
     gateChegada: '14',    gateEmbarque: '9A',
+    pax:  { encontrado: 0, total: 2 },
+    bags: { encontrado: 0, total: 3, esteira: 0 },
     agentes: ['Carol Danvers'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'aguardando', horario: null },
@@ -193,6 +209,8 @@ const MOCK_DATA = [
     sta: '11:10',         std: '12:30',
     eta: '11:10',         etd: '12:30',
     gateChegada: '201',   gateEmbarque: '18B',
+    pax:  { encontrado: 2, total: 5 },
+    bags: { encontrado: 3, total: 6, esteira: 2 },
     agentes: ['Sam Wilson'],
     hitos: [
       { id: 1, nome: 'Desembarque',      status: 'ok',         horario: '11:13' },
@@ -212,6 +230,8 @@ const MOCK_DATA = [
     sta: '10:40',         std: '11:50',
     eta: '10:40',         etd: '11:50',
     gateChegada: '9B',    gateEmbarque: '3',
+    pax:  { encontrado: 3, total: 3 },
+    bags: { encontrado: 5, total: 5, esteira: 0 },
     agentes: ['Wanda Maximoff'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'ok',      horario: '10:42' },
@@ -230,6 +250,8 @@ const MOCK_DATA = [
     sta: '10:45',         std: '12:10',
     eta: '10:40',         etd: '12:10',
     gateChegada: '246',   gateEmbarque: '207',
+    pax:  { encontrado: 8, total: 12 },
+    bags: { encontrado: 10, total: 15, esteira: 5 },
     agentes: ['Scott Lang', 'Steve Rogers', 'Bucky Barnes'],
     hitos: [
       { id: 1, nome: 'Desembarque',         status: 'ok',         horario: '10:43' },
@@ -252,6 +274,8 @@ const MOCK_DATA = [
     sta: '11:20',         std: '12:40',
     eta: '11:20',         etd: '12:40',
     gateChegada: '3A',    gateEmbarque: '11',
+    pax:  { encontrado: 0, total: 7 },
+    bags: { encontrado: 0, total: 8, esteira: 0 },
     agentes: ['Diana Fury'],
     hitos: [
       { id: 1, nome: 'Desembarque',      status: 'aguardando', horario: null },
@@ -271,6 +295,8 @@ const MOCK_DATA = [
     sta: '11:35',         std: '12:50',
     eta: '11:35',         etd: '12:50',
     gateChegada: '6',     gateEmbarque: '2A',
+    pax:  { encontrado: 5, total: 6 },
+    bags: { encontrado: 7, total: 9, esteira: 3 },
     agentes: ['Maria Hill', 'Nick Fury'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'ok',         horario: '11:38' },
@@ -471,6 +497,9 @@ function renderRow(voo) {
   const isPax = status === 'pax_nao_encontrado';
   const progressoLabel = isPax ? '1/1 hitos' : `${respondidos}/${total} hitos`;
 
+  const pax  = voo.pax  || { encontrado: 0, total: 0 };
+  const bags = voo.bags || { encontrado: 0, total: 0, esteira: 0 };
+
   return `
     <tr
       class="sg-row--${status}"
@@ -481,7 +510,14 @@ function renderRow(voo) {
       data-status="${status}"
       data-sta="${voo.sta}"
       data-progresso="${progresso}"
+      data-pax-ratio="${pax.total > 0 ? pax.encontrado / pax.total : 0}"
+      data-bags-ratio="${bags.total > 0 ? bags.encontrado / bags.total : 0}"
     >
+      <!-- ── TIPO ───────────────────────────────────────── -->
+      <td>
+        <span class="sg-badge-tipo sg-badge-tipo--${voo.tipo}">${voo.tipo}</span>
+      </td>
+
       <!-- ── CHEGADA ─────────────────────────────────────── -->
       <td class="sg-col-chegada sg-col-voo-chegada">
         <span class="sg-voo-number"
@@ -536,9 +572,19 @@ function renderRow(voo) {
         <span class="sg-gate-label">Gate</span>
       </td>
 
-      <!-- ── TIPO ───────────────────────────────────────── -->
-      <td>
-        <span class="sg-badge-tipo sg-badge-tipo--${voo.tipo}">${voo.tipo}</span>
+      <!-- ── PAX ───────────────────────────────────────── -->
+      <td class="sg-col-pax">
+        <div class="sg-qty-block">
+          <span class="sg-qty-found">${pax.encontrado}</span><span class="sg-qty-sep">/</span><span class="sg-qty-total">${pax.total}</span>
+        </div>
+      </td>
+
+      <!-- ── BAGS ──────────────────────────────────────── -->
+      <td class="sg-col-bags">
+        <div class="sg-qty-block">
+          <span class="sg-qty-found">${bags.encontrado}</span><span class="sg-qty-sep">/</span><span class="sg-qty-total">${bags.total}</span>
+        </div>
+        <div class="sg-bags-esteira">Esteira: ${bags.esteira}</div>
       </td>
 
       <!-- ── AGENTE ─────────────────────────────────────── -->
@@ -577,6 +623,35 @@ function renderRow(voo) {
       </td>
     </tr>
   `;
+}
+
+// ── ESTADO DE SORT ────────────────────────────────────────────
+let sortState = { col: null, dir: 'none' }; // col: 'pax' | 'bags', dir: 'asc' | 'desc' | 'none'
+
+function applySortState(data) {
+  if (sortState.col === null || sortState.dir === 'none') return data;
+  return [...data].sort((a, b) => {
+    const ratioA = sortState.col === 'pax'
+      ? (a.pax?.total > 0 ? a.pax.encontrado / a.pax.total : 0)
+      : (a.bags?.total > 0 ? a.bags.encontrado / a.bags.total : 0);
+    const ratioB = sortState.col === 'pax'
+      ? (b.pax?.total > 0 ? b.pax.encontrado / b.pax.total : 0)
+      : (b.bags?.total > 0 ? b.bags.encontrado / b.bags.total : 0);
+    return sortState.dir === 'asc' ? ratioA - ratioB : ratioB - ratioA;
+  });
+}
+
+function updateSortButton(col) {
+  const btn = document.getElementById(`sort-${col}`);
+  if (!btn) return;
+  const icon = btn.querySelector('i');
+  if (sortState.col === col && sortState.dir === 'asc') {
+    icon.className = 'fa-solid fa-sort-up';
+  } else if (sortState.col === col && sortState.dir === 'desc') {
+    icon.className = 'fa-solid fa-sort-down';
+  } else {
+    icon.className = 'fa-solid fa-sort';
+  }
 }
 
 // ── PAGINAÇÃO ──────────────────────────────────────────────────
@@ -725,8 +800,9 @@ function getFilteredData() {
     data = data.filter(v => v.destino.toLowerCase().includes(fDestino));
   }
 
-  // Ordenação padrão por STA
+  // Ordenação padrão por STA (substituída se houver sort ativo)
   data.sort((a, b) => a.sta.localeCompare(b.sta));
+  data = applySortState(data);
 
   return data;
 }
@@ -762,6 +838,24 @@ document.getElementById('filter-origem').addEventListener('input', filterAndRese
 document.getElementById('filter-destino').addEventListener('input', filterAndReset);
 
 document.getElementById('btn-filtrar').addEventListener('click', applyFilters);
+
+// ── EVENTOS DE SORT ────────────────────────────────────────────
+
+['pax', 'bags'].forEach(col => {
+  document.getElementById(`sort-${col}`).addEventListener('click', () => {
+    if (sortState.col !== col) {
+      sortState = { col, dir: 'desc' };
+    } else if (sortState.dir === 'desc') {
+      sortState = { col, dir: 'asc' };
+    } else {
+      sortState = { col: null, dir: 'none' };
+    }
+    updateSortButton('pax');
+    updateSortButton('bags');
+    currentPage = 1;
+    applyFilters();
+  });
+});
 
 document.getElementById('btn-limpar').addEventListener('click', () => {
   document.getElementById('filter-voo').value      = '';
