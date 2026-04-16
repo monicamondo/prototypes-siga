@@ -36,19 +36,19 @@ const MOCK_DATA = [
   {
     id: 1,
     tipo: 'RUN',
-    vpiChegada: 'LA100',  vooConexao: 'LA3100',
-    origem: 'GRU',        destino: 'MAO',
-    sta: '09:30',         std: '10:45',
-    eta: '09:35',         etd: '10:45',
-    gateChegada: '25B',   gateEmbarque: '14C',
-    pax:  { encontrado: 6, total: 8 },
-    bags: { encontrado: 5, total: 7, esteira: 2 },
+    vpiChegada: 'LA100', vooConexao: 'LA3100',
+    origem: 'GRU', destino: 'MAO',
+    sta: '09:30', std: '10:45',
+    eta: '09:35', etd: '10:45',
+    gateChegada: '25B', gateEmbarque: '14C',
+    pax: { encontrado: 6, total: 8 },
+    bags: { encontrado: 5, total: 7, conexao: 3, bagbelt: 'B14' },
     agentes: ['Kate Austen'],
     hitos: [
-      { id: 1, nome: 'Desembarque',  status: 'ok',         horario: '09:33' },
-      { id: 2, nome: 'Em percurso',  status: 'ok',         horario: '09:41' },
-      { id: 3, nome: 'Gate',         status: 'aguardando', horario: null    },
-      { id: 4, nome: 'Embarque',     status: 'aguardando', horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '09:33' },
+      { id: 2, nome: 'Em percurso', status: 'ok', horario: '09:41' },
+      { id: 3, nome: 'Gate', status: 'aguardando', horario: null },
+      { id: 4, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 
@@ -56,20 +56,20 @@ const MOCK_DATA = [
   {
     id: 2,
     tipo: 'Short',
-    vpiChegada: 'G312',   vooConexao: 'G31200',
-    origem: 'CGH',        destino: 'GIG',
-    sta: '09:50',         std: '11:20',
-    eta: '10:10',         etd: '11:20',
-    gateChegada: '12A',   gateEmbarque: '8',
-    pax:  { encontrado: 0, total: 3 },
-    bags: { encontrado: 1, total: 4, esteira: 1 },
+    vpiChegada: 'G312', vooConexao: 'G31200',
+    origem: 'CGH', destino: 'GIG',
+    sta: '09:50', std: '11:20',
+    eta: '10:10', etd: '11:20',
+    gateChegada: '12A', gateEmbarque: '8',
+    pax: { encontrado: 0, total: 3 },
+    bags: { encontrado: 1, total: 4, conexao: 2, bagbelt: 'A3' },
     agentes: ['Tony Stark'],
     hitos: [
-      { id: 1, nome: 'Desembarque',      status: 'pax_nao_encontrado', horario: '09:52' },
-      { id: 2, nome: 'Em percurso',      status: 'aguardando',          horario: null    },
-      { id: 3, nome: 'Raio-X',          status: 'aguardando',          horario: null    },
-      { id: 4, nome: 'Gate de Embarque', status: 'aguardando',          horario: null    },
-      { id: 5, nome: 'Embarque',         status: 'aguardando',          horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'pax_nao_encontrado', horario: '09:52' },
+      { id: 2, nome: 'Em percurso', status: 'aguardando', horario: null },
+      { id: 3, nome: 'Raio-X', status: 'aguardando', horario: null },
+      { id: 4, nome: 'Gate de Embarque', status: 'aguardando', horario: null },
+      { id: 5, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 
@@ -77,19 +77,19 @@ const MOCK_DATA = [
   {
     id: 3,
     tipo: 'Short',
-    vpiChegada: 'AD44',   vooConexao: 'AD4455',
-    origem: 'BSB',        destino: 'FOR',
-    sta: '09:55',         std: '11:00',
-    eta: '09:50',         etd: '11:00',
-    gateChegada: '7C',    gateEmbarque: '22',
-    pax:  { encontrado: 4, total: 4 },
-    bags: { encontrado: 6, total: 6, esteira: 0 },
+    vpiChegada: 'AD44', vooConexao: 'AD4455',
+    origem: 'BSB', destino: 'FOR',
+    sta: '09:55', std: '11:00',
+    eta: '09:50', etd: '11:00',
+    gateChegada: '7C', gateEmbarque: '22',
+    pax: { encontrado: 4, total: 4 },
+    bags: { encontrado: 6, total: 6, conexao: 0, bagbelt: 'C22' },
     agentes: ['Peter Parker'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'ok', horario: '09:52' },
       { id: 2, nome: 'Em percurso', status: 'ok', horario: '09:58' },
-      { id: 3, nome: 'Gate',        status: 'ok', horario: '10:05' },
-      { id: 4, nome: 'Embarque',    status: 'ok', horario: '10:12' },
+      { id: 3, nome: 'Gate', status: 'ok', horario: '10:05' },
+      { id: 4, nome: 'Embarque', status: 'ok', horario: '10:12' },
     ]
   },
 
@@ -97,22 +97,22 @@ const MOCK_DATA = [
   {
     id: 4,
     tipo: 'RUN',
-    vpiChegada: 'LA88',   vooConexao: 'LA8801',
-    origem: 'GIG',        destino: 'SCL',
-    sta: '10:00',         std: '11:30',
-    eta: '10:00',         etd: '11:30',
+    vpiChegada: 'LA88', vooConexao: 'LA8801',
+    origem: 'GIG', destino: 'SCL',
+    sta: '10:00', std: '11:30',
+    eta: '10:00', etd: '11:30',
     gateChegada: 'Rem. L', gateEmbarque: '201',
-    pax:  { encontrado: 3, total: 5 },
-    bags: { encontrado: 4, total: 8, esteira: 3 },
+    pax: { encontrado: 3, total: 5 },
+    bags: { encontrado: 4, total: 8, conexao: 5, bagbelt: 'REM2' },
     agentes: ['Leia Organa'],
     hitos: [
-      { id: 1, nome: 'Desembarque',         status: 'ok',         horario: '10:04' },
-      { id: 2, nome: 'Em percurso',         status: 'ok',         horario: '10:11' },
-      { id: 3, nome: 'Raio-X',             status: 'ok',         horario: '10:19' },
-      { id: 4, nome: 'Saindo da Imigração', status: 'aguardando', horario: null    },
-      { id: 5, nome: 'Escada Terminal 3',   status: 'aguardando', horario: null    },
-      { id: 6, nome: 'Gate de Embarque',    status: 'aguardando', horario: null    },
-      { id: 7, nome: 'Embarque',            status: 'aguardando', horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '10:04' },
+      { id: 2, nome: 'Em percurso', status: 'ok', horario: '10:11' },
+      { id: 3, nome: 'Raio-X', status: 'ok', horario: '10:19' },
+      { id: 4, nome: 'Saindo da Imigração', status: 'aguardando', horario: null },
+      { id: 5, nome: 'Escada Terminal 3', status: 'aguardando', horario: null },
+      { id: 6, nome: 'Gate de Embarque', status: 'aguardando', horario: null },
+      { id: 7, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 
@@ -120,17 +120,17 @@ const MOCK_DATA = [
   {
     id: 5,
     tipo: 'RUN',
-    vpiChegada: 'CM43',   vooConexao: 'CM430',
-    origem: 'PTY',        destino: 'BOG',
-    sta: '10:05',         std: '11:10',
-    eta: '10:05',         etd: '11:10',
-    gateChegada: '4F',    gateEmbarque: '19',
-    pax:  { encontrado: 0, total: 6 },
-    bags: { encontrado: 0, total: 9, esteira: 0 },
+    vpiChegada: 'CM43', vooConexao: 'CM430',
+    origem: 'PTY', destino: 'BOG',
+    sta: '10:05', std: '11:10',
+    eta: '10:05', etd: '11:10',
+    gateChegada: '4F', gateEmbarque: '19',
+    pax: { encontrado: 0, total: 6 },
+    bags: { encontrado: 0, total: 9, conexao: 4, bagbelt: 'D7' },
     agentes: ['Clark Kent'],
     hitos: [
-      { id: 1, nome: 'Desembarque',      status: 'aguardando', horario: null },
-      { id: 2, nome: 'Em percurso',      status: 'aguardando', horario: null },
+      { id: 1, nome: 'Desembarque', status: 'aguardando', horario: null },
+      { id: 2, nome: 'Em percurso', status: 'aguardando', horario: null },
       { id: 3, nome: 'Gate de Embarque', status: 'aguardando', horario: null },
     ]
   },
@@ -139,20 +139,20 @@ const MOCK_DATA = [
   {
     id: 6,
     tipo: 'Short',
-    vpiChegada: 'AV90',   vooConexao: 'AV903',
-    origem: 'BOG',        destino: 'MDE',
-    sta: '10:10',         std: '11:25',
-    eta: '10:15',         etd: '11:30',
-    gateChegada: '22',    gateEmbarque: '5B',
-    pax:  { encontrado: 1, total: 4 },
-    bags: { encontrado: 2, total: 5, esteira: 1 },
+    vpiChegada: 'AV90', vooConexao: 'AV903',
+    origem: 'BOG', destino: 'MDE',
+    sta: '10:10', std: '11:25',
+    eta: '10:15', etd: '11:30',
+    gateChegada: '22', gateEmbarque: '5B',
+    pax: { encontrado: 1, total: 4 },
+    bags: { encontrado: 2, total: 5, conexao: 1, bagbelt: 'B5A' },
     agentes: ['Diana Prince'],
     hitos: [
-      { id: 1, nome: 'Desembarque', status: 'ok',         horario: '10:17' },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '10:17' },
       { id: 2, nome: 'Em percurso', status: 'pax_nao_encontrado', horario: '10:23' },
-      { id: 3, nome: 'Raio-X',     status: 'aguardando', horario: null    },
-      { id: 4, nome: 'Gate',        status: 'aguardando', horario: null    },
-      { id: 5, nome: 'Embarque',    status: 'aguardando', horario: null    },
+      { id: 3, nome: 'Raio-X', status: 'aguardando', horario: null },
+      { id: 4, nome: 'Gate', status: 'aguardando', horario: null },
+      { id: 5, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 
@@ -160,24 +160,24 @@ const MOCK_DATA = [
   {
     id: 7,
     tipo: 'RUN',
-    vpiChegada: 'LA45',   vooConexao: 'LA4530',
-    origem: 'GRU',        destino: 'AEP',
-    sta: '10:30',         std: '12:00',
-    eta: '10:30',         etd: '12:00',
-    gateChegada: '31',    gateEmbarque: '246',
-    pax:  { encontrado: 7, total: 10 },
-    bags: { encontrado: 9, total: 12, esteira: 4 },
+    vpiChegada: 'LA45', vooConexao: 'LA4530',
+    origem: 'GRU', destino: 'AEP',
+    sta: '10:30', std: '12:00',
+    eta: '10:30', etd: '12:00',
+    gateChegada: '31', gateEmbarque: '246',
+    pax: { encontrado: 7, total: 10 },
+    bags: { encontrado: 9, total: 12, conexao: 6, bagbelt: 'A246' },
     agentes: ['Bruce Wayne', 'Natasha Romanoff'],
     hitos: [
-      { id: 1, nome: 'Desembarque',         status: 'ok',         horario: '10:33' },
-      { id: 2, nome: 'Em percurso',         status: 'ok',         horario: '10:39' },
-      { id: 3, nome: 'Raio-X',             status: 'ok',         horario: '10:47' },
-      { id: 4, nome: 'Saindo da Imigração', status: 'ok',         horario: '10:58' },
-      { id: 5, nome: 'Sala VIP',            status: 'ok',         horario: '11:05' },
-      { id: 6, nome: 'Escada Terminal 3',   status: 'aguardando', horario: null    },
-      { id: 7, nome: 'Gate de Embarque',    status: 'aguardando', horario: null    },
-      { id: 8, nome: 'Embarque',            status: 'aguardando', horario: null    },
-      { id: 9, nome: 'Concluído',           status: 'aguardando', horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '10:33' },
+      { id: 2, nome: 'Em percurso', status: 'ok', horario: '10:39' },
+      { id: 3, nome: 'Raio-X', status: 'ok', horario: '10:47' },
+      { id: 4, nome: 'Saindo da Imigração', status: 'ok', horario: '10:58' },
+      { id: 5, nome: 'Sala VIP', status: 'ok', horario: '11:05' },
+      { id: 6, nome: 'Escada Terminal 3', status: 'aguardando', horario: null },
+      { id: 7, nome: 'Gate de Embarque', status: 'aguardando', horario: null },
+      { id: 8, nome: 'Embarque', status: 'aguardando', horario: null },
+      { id: 9, nome: 'Concluído', status: 'aguardando', horario: null },
     ]
   },
 
@@ -185,18 +185,18 @@ const MOCK_DATA = [
   {
     id: 8,
     tipo: 'RUN',
-    vpiChegada: 'LA50',   vooConexao: 'LA5010',
-    origem: 'SSA',        destino: 'GIG',
-    sta: '11:00',         std: '12:15',
-    eta: '11:05',         etd: '12:15',
-    gateChegada: '14',    gateEmbarque: '9A',
-    pax:  { encontrado: 0, total: 2 },
-    bags: { encontrado: 0, total: 3, esteira: 0 },
+    vpiChegada: 'LA50', vooConexao: 'LA5010',
+    origem: 'SSA', destino: 'GIG',
+    sta: '11:00', std: '12:15',
+    eta: '11:05', etd: '12:15',
+    gateChegada: '14', gateEmbarque: '9A',
+    pax: { encontrado: 0, total: 2 },
+    bags: { encontrado: 0, total: 3, conexao: 0, bagbelt: 'C9A' },
     agentes: ['Carol Danvers'],
     hitos: [
       { id: 1, nome: 'Desembarque', status: 'aguardando', horario: null },
       { id: 2, nome: 'Em percurso', status: 'aguardando', horario: null },
-      { id: 3, nome: 'Gate',        status: 'aguardando', horario: null },
+      { id: 3, nome: 'Gate', status: 'aguardando', horario: null },
     ]
   },
 
@@ -204,20 +204,20 @@ const MOCK_DATA = [
   {
     id: 9,
     tipo: 'Short',
-    vpiChegada: 'LA22',   vooConexao: 'LA2210',
-    origem: 'GRU',        destino: 'MVD',
-    sta: '11:10',         std: '12:30',
-    eta: '11:10',         etd: '12:30',
-    gateChegada: '201',   gateEmbarque: '18B',
-    pax:  { encontrado: 2, total: 5 },
-    bags: { encontrado: 3, total: 6, esteira: 2 },
+    vpiChegada: 'LA22', vooConexao: 'LA2210',
+    origem: 'GRU', destino: 'MVD',
+    sta: '11:10', std: '12:30',
+    eta: '11:10', etd: '12:30',
+    gateChegada: '201', gateEmbarque: '18B',
+    pax: { encontrado: 2, total: 5 },
+    bags: { encontrado: 3, total: 6, conexao: 2, bagbelt: 'B18' },
     agentes: ['Sam Wilson'],
     hitos: [
-      { id: 1, nome: 'Desembarque',      status: 'ok',         horario: '11:13' },
-      { id: 2, nome: 'Em percurso',      status: 'aguardando', horario: null    },
-      { id: 3, nome: 'Raio-X',          status: 'aguardando', horario: null    },
-      { id: 4, nome: 'Gate de Embarque', status: 'aguardando', horario: null    },
-      { id: 5, nome: 'Embarque',         status: 'aguardando', horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '11:13' },
+      { id: 2, nome: 'Em percurso', status: 'aguardando', horario: null },
+      { id: 3, nome: 'Raio-X', status: 'aguardando', horario: null },
+      { id: 4, nome: 'Gate de Embarque', status: 'aguardando', horario: null },
+      { id: 5, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 
@@ -225,19 +225,19 @@ const MOCK_DATA = [
   {
     id: 10,
     tipo: 'Short',
-    vpiChegada: 'G315',   vooConexao: 'G31540',
-    origem: 'SDU',        destino: 'REC',
-    sta: '10:40',         std: '11:50',
-    eta: '10:40',         etd: '11:50',
-    gateChegada: '9B',    gateEmbarque: '3',
-    pax:  { encontrado: 3, total: 3 },
-    bags: { encontrado: 5, total: 5, esteira: 0 },
+    vpiChegada: 'G315', vooConexao: 'G31540',
+    origem: 'SDU', destino: 'REC',
+    sta: '10:40', std: '11:50',
+    eta: '10:40', etd: '11:50',
+    gateChegada: '9B', gateEmbarque: '3',
+    pax: { encontrado: 3, total: 3 },
+    bags: { encontrado: 5, total: 5, conexao: 0, bagbelt: 'A3B' },
     agentes: ['Wanda Maximoff'],
     hitos: [
-      { id: 1, nome: 'Desembarque', status: 'ok',      horario: '10:42' },
-      { id: 2, nome: 'Em percurso', status: 'ok',      horario: '10:48' },
-      { id: 3, nome: 'Gate',        status: 'ignorado', horario: '10:55' },
-      { id: 4, nome: 'Embarque',    status: 'ok',      horario: '11:02' },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '10:42' },
+      { id: 2, nome: 'Em percurso', status: 'ok', horario: '10:48' },
+      { id: 3, nome: 'Gate', status: 'ignorado', horario: '10:55' },
+      { id: 4, nome: 'Embarque', status: 'ok', horario: '11:02' },
     ]
   },
 
@@ -245,23 +245,23 @@ const MOCK_DATA = [
   {
     id: 11,
     tipo: 'RUN',
-    vpiChegada: 'AA9',    vooConexao: 'AA901',
-    origem: 'GRU',        destino: 'MIA',
-    sta: '10:45',         std: '12:10',
-    eta: '10:40',         etd: '12:10',
-    gateChegada: '246',   gateEmbarque: '207',
-    pax:  { encontrado: 8, total: 12 },
-    bags: { encontrado: 10, total: 15, esteira: 5 },
+    vpiChegada: 'AA9', vooConexao: 'AA901',
+    origem: 'GRU', destino: 'MIA',
+    sta: '10:45', std: '12:10',
+    eta: '10:40', etd: '12:10',
+    gateChegada: '246', gateEmbarque: '207',
+    pax: { encontrado: 8, total: 12 },
+    bags: { encontrado: 10, total: 15, conexao: 7, bagbelt: 'T207' },
     agentes: ['Scott Lang', 'Steve Rogers', 'Bucky Barnes'],
     hitos: [
-      { id: 1, nome: 'Desembarque',         status: 'ok',         horario: '10:43' },
-      { id: 2, nome: 'Em percurso',         status: 'ok',         horario: '10:49' },
-      { id: 3, nome: 'Raio-X',             status: 'ok',         horario: '10:57' },
-      { id: 4, nome: 'Saindo da Imigração', status: 'ok',         horario: '11:08' },
-      { id: 5, nome: 'Corredor B',          status: 'ignorado',   horario: '11:10' },
-      { id: 6, nome: 'Gate Internacional',  status: 'ok',         horario: '11:20' },
-      { id: 7, nome: 'Embarque',            status: 'aguardando', horario: null    },
-      { id: 8, nome: 'Concluído',           status: 'aguardando', horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '10:43' },
+      { id: 2, nome: 'Em percurso', status: 'ok', horario: '10:49' },
+      { id: 3, nome: 'Raio-X', status: 'ok', horario: '10:57' },
+      { id: 4, nome: 'Saindo da Imigração', status: 'ok', horario: '11:08' },
+      { id: 5, nome: 'Corredor B', status: 'ignorado', horario: '11:10' },
+      { id: 6, nome: 'Gate Internacional', status: 'ok', horario: '11:20' },
+      { id: 7, nome: 'Embarque', status: 'aguardando', horario: null },
+      { id: 8, nome: 'Concluído', status: 'aguardando', horario: null },
     ]
   },
 
@@ -269,20 +269,20 @@ const MOCK_DATA = [
   {
     id: 12,
     tipo: 'Short',
-    vpiChegada: 'CM92',   vooConexao: 'CM920',
-    origem: 'LIM',        destino: 'PTY',
-    sta: '11:20',         std: '12:40',
-    eta: '11:20',         etd: '12:40',
-    gateChegada: '3A',    gateEmbarque: '11',
-    pax:  { encontrado: 0, total: 7 },
-    bags: { encontrado: 0, total: 8, esteira: 0 },
+    vpiChegada: 'CM92', vooConexao: 'CM920',
+    origem: 'LIM', destino: 'PTY',
+    sta: '11:20', std: '12:40',
+    eta: '11:20', etd: '12:40',
+    gateChegada: '3A', gateEmbarque: '11',
+    pax: { encontrado: 0, total: 7 },
+    bags: { encontrado: 0, total: 8, conexao: 3, bagbelt: 'E11' },
     agentes: ['Diana Fury'],
     hitos: [
-      { id: 1, nome: 'Desembarque',      status: 'aguardando', horario: null },
-      { id: 2, nome: 'Em percurso',      status: 'aguardando', horario: null },
-      { id: 3, nome: 'Raio-X',          status: 'aguardando', horario: null },
+      { id: 1, nome: 'Desembarque', status: 'aguardando', horario: null },
+      { id: 2, nome: 'Em percurso', status: 'aguardando', horario: null },
+      { id: 3, nome: 'Raio-X', status: 'aguardando', horario: null },
       { id: 4, nome: 'Gate de Embarque', status: 'aguardando', horario: null },
-      { id: 5, nome: 'Embarque',         status: 'aguardando', horario: null },
+      { id: 5, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 
@@ -290,19 +290,19 @@ const MOCK_DATA = [
   {
     id: 13,
     tipo: 'RUN',
-    vpiChegada: 'AV71',   vooConexao: 'AV711',
-    origem: 'BOG',        destino: 'CTG',
-    sta: '11:35',         std: '12:50',
-    eta: '11:35',         etd: '12:50',
-    gateChegada: '6',     gateEmbarque: '2A',
-    pax:  { encontrado: 5, total: 6 },
-    bags: { encontrado: 7, total: 9, esteira: 3 },
+    vpiChegada: 'AV71', vooConexao: 'AV711',
+    origem: 'BOG', destino: 'CTG',
+    sta: '11:35', std: '12:50',
+    eta: '11:35', etd: '12:50',
+    gateChegada: '6', gateEmbarque: '2A',
+    pax: { encontrado: 5, total: 6 },
+    bags: { encontrado: 7, total: 9, conexao: 4, bagbelt: 'C2A' },
     agentes: ['Maria Hill', 'Nick Fury'],
     hitos: [
-      { id: 1, nome: 'Desembarque', status: 'ok',         horario: '11:38' },
-      { id: 2, nome: 'Em percurso', status: 'ok',         horario: '11:44' },
-      { id: 3, nome: 'Gate',        status: 'aguardando', horario: null    },
-      { id: 4, nome: 'Embarque',    status: 'aguardando', horario: null    },
+      { id: 1, nome: 'Desembarque', status: 'ok', horario: '11:38' },
+      { id: 2, nome: 'Em percurso', status: 'ok', horario: '11:44' },
+      { id: 3, nome: 'Gate', status: 'aguardando', horario: null },
+      { id: 4, nome: 'Embarque', status: 'aguardando', horario: null },
     ]
   },
 ];
@@ -310,26 +310,26 @@ const MOCK_DATA = [
 // ── UTILITÁRIOS ────────────────────────────────────────────────
 
 const STATUS_LABEL = {
-  aguardando:         'Aguardando',
-  em_percurso:        'Em percurso',
-  concluido:          'Concluído',
+  aguardando: 'Aguardando',
+  em_percurso: 'Em percurso',
+  concluido: 'Concluído',
   pax_nao_encontrado: 'PAX n/e',
 };
 
 const STATUS_ICON = {
-  aguardando:         'fa-regular fa-clock',
-  em_percurso:        'fa-solid fa-person-walking-arrow-right',
-  concluido:          'fa-solid fa-circle-check',
+  aguardando: 'fa-regular fa-clock',
+  em_percurso: 'fa-solid fa-person-walking-arrow-right',
+  concluido: 'fa-solid fa-circle-check',
   pax_nao_encontrado: 'fa-solid fa-person-circle-xmark',
 };
 
 // Ícones dos hitos — mesma linguagem visual do mobile
 const HITO_STATUS_ICON = {
-  ok:                 null,                    // exibe apenas o número (conforme solicitação)
-  aguardando:         null,                    // exibe só o número
-  ignorado:           'fa-solid fa-xmark',
+  ok: null,                    // exibe apenas o número (conforme solicitação)
+  aguardando: null,                    // exibe só o número
+  ignorado: 'fa-solid fa-xmark',
   pax_nao_encontrado: 'fa-solid fa-xmark',     // vermelho (cor diferencia do ignorado)
-  cancelado:          'fa-solid fa-minus',     // cinza claro — hito não será executado
+  cancelado: 'fa-solid fa-minus',     // cinza claro — hito não será executado
 };
 
 /** Calcula % de progresso */
@@ -350,7 +350,7 @@ function deriveStatus(voo) {
   if (h.some(hito => hito.status === 'pax_nao_encontrado')) return 'pax_nao_encontrado';
   const p = calcProgresso(h);
   if (p === 100) return 'concluido';
-  if (p > 0)     return 'em_percurso';
+  if (p > 0) return 'em_percurso';
   return 'aguardando';
 }
 
@@ -390,11 +390,11 @@ function renderHitosDot(hito, index, total, hitos, agentName) {
   const isCurrent = hito.status === 'aguardando' && index === firstAguardando && firstAguardando > 0;
 
   const statusLabel = {
-    ok:                 'Concluído',
-    aguardando:         'Aguardando',
-    ignorado:           'Ignorado',
+    ok: 'Concluído',
+    aguardando: 'Aguardando',
+    ignorado: 'Ignorado',
     pax_nao_encontrado: 'PAX não encontrado',
-    cancelado:          'Cancelado',
+    cancelado: 'Cancelado',
   }[hito.status];
 
   const agentFormatted = formatAgentName(agentName);
@@ -475,15 +475,18 @@ function renderRow(voo) {
     return h;
   });
 
-  const status     = deriveStatus({ ...voo, hitos: normalizedHitos });
-  const progresso  = calcProgresso(normalizedHitos);
-  const total      = normalizedHitos.length;
+  const status = deriveStatus({ ...voo, hitos: normalizedHitos });
+  const progresso = calcProgresso(normalizedHitos);
+  const total = normalizedHitos.length;
   const respondidos = normalizedHitos.filter(h =>
     h.status === 'ok' || h.status === 'ignorado' || h.status === 'pax_nao_encontrado'
   ).length;
 
   const etaAtrasado = voo.eta > voo.sta;
   const etdAtrasado = voo.etd > voo.std;
+  const dataVoo = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const tipoGateChegada = /rem/i.test(voo.gateChegada) ? 'Remota' : 'Finger';
+  const tipoGateEmbarque = /rem/i.test(voo.gateEmbarque) ? 'Remota' : 'Finger';
 
   const hitosHtml = normalizedHitos
     .map((h, i) => {
@@ -497,7 +500,7 @@ function renderRow(voo) {
   const isPax = status === 'pax_nao_encontrado';
   const progressoLabel = isPax ? '1/1 hitos' : `${respondidos}/${total} hitos`;
 
-  const pax  = voo.pax  || { encontrado: 0, total: 0 };
+  const pax = voo.pax || { encontrado: 0, total: 0 };
   const bags = voo.bags || { encontrado: 0, total: 0, esteira: 0 };
 
   return `
@@ -529,20 +532,20 @@ function renderRow(voo) {
 
       <td class="sg-col-chegada">
         ${voo.eta !== voo.sta
-          ? `<div class="sg-time-block">
+      ? `<div class="sg-time-block">
                <span class="sg-time-value ${etaAtrasado ? 'sg-time-value--delayed' : ''}">${voo.eta}</span>
-               <span class="sg-time-label">ETA</span>
+               <span class="sg-time-date">${dataVoo}</span>
              </div>`
-          : `<div class="sg-time-block">
+      : `<div class="sg-time-block">
                <span class="sg-time-value">${voo.sta}</span>
-               <span class="sg-time-label">STA</span>
+               <span class="sg-time-date">${dataVoo}</span>
              </div>`
-        }
+    }
       </td>
 
       <td class="sg-col-chegada">
         <span class="sg-gate">${voo.gateChegada}</span>
-        <span class="sg-gate-label">Gate</span>
+        <span class="sg-gate-label">${tipoGateChegada}</span>
       </td>
 
       <!-- ── PARTIDA ─────────────────────────────────────── -->
@@ -556,20 +559,20 @@ function renderRow(voo) {
 
       <td class="sg-col-partida">
         ${voo.etd !== voo.std
-          ? `<div class="sg-time-block">
+      ? `<div class="sg-time-block">
                <span class="sg-time-value ${etdAtrasado ? 'sg-time-value--delayed' : ''}">${voo.etd}</span>
-               <span class="sg-time-label">ETD</span>
+               <span class="sg-time-date">${dataVoo}</span>
              </div>`
-          : `<div class="sg-time-block">
+      : `<div class="sg-time-block">
                <span class="sg-time-value">${voo.std}</span>
-               <span class="sg-time-label">STD</span>
+               <span class="sg-time-date">${dataVoo}</span>
              </div>`
-        }
+    }
       </td>
 
       <td class="sg-col-partida">
         <span class="sg-gate">${voo.gateEmbarque}</span>
-        <span class="sg-gate-label">Gate</span>
+        <span class="sg-gate-label">${tipoGateEmbarque}</span>
       </td>
 
       <!-- ── PAX ───────────────────────────────────────── -->
@@ -582,9 +585,9 @@ function renderRow(voo) {
       <!-- ── BAGS ──────────────────────────────────────── -->
       <td class="sg-col-bags">
         <div class="sg-qty-block">
-          <span class="sg-qty-found">${bags.encontrado}</span><span class="sg-qty-sep">/</span><span class="sg-qty-total">${bags.total}</span>
+          <span class="sg-qty-found">${bags.conexao}</span>
         </div>
-        <div class="sg-bags-esteira">Esteira: ${bags.esteira}</div>
+        ${bags.bagbelt ? `<div class="sg-bags-bagbelt">${bags.bagbelt}</div>` : ''}
       </td>
 
       <!-- ── AGENTE ─────────────────────────────────────── -->
@@ -657,7 +660,7 @@ function updateSortButton(col) {
 // ── PAGINAÇÃO ──────────────────────────────────────────────────
 
 let currentPage = 1;
-let pageSize    = 20;
+let pageSize = 20;
 
 function getPageSlice(data) {
   const start = (currentPage - 1) * pageSize;
@@ -669,9 +672,9 @@ function totalPages(data) {
 }
 
 function renderPagination(data) {
-  const list       = document.getElementById('pagination-list');
+  const list = document.getElementById('pagination-list');
   const totalLabel = document.getElementById('pagination-total-label');
-  const total      = totalPages(data);
+  const total = totalPages(data);
 
   totalLabel.textContent = `${data.length} itens`;
 
@@ -682,7 +685,7 @@ function renderPagination(data) {
   }
 
   const showFirstEllipsis = pages[0] > 2;
-  const showLastEllipsis  = pages[pages.length - 1] < total - 1;
+  const showLastEllipsis = pages[pages.length - 1] < total - 1;
 
   let html = '';
   html += `<li class="sg-page-item ${currentPage === 1 ? 'disabled' : ''}">
@@ -742,9 +745,9 @@ function renderTable(data) {
 // ── CONTADORES DE RESUMO ───────────────────────────────────────
 
 function updateSummary(data) {
-  document.getElementById('count-total').textContent   = data.length;
+  document.getElementById('count-total').textContent = data.length;
   document.getElementById('count-waiting').textContent = data.filter(v => deriveStatus(v) === 'aguardando').length;
-  document.getElementById('count-pax').textContent     = data.filter(v => deriveStatus(v) === 'pax_nao_encontrado').length;
+  document.getElementById('count-pax').textContent = data.filter(v => deriveStatus(v) === 'pax_nao_encontrado').length;
   document.getElementById('monitoring-count').textContent = `${data.length} - itens`;
 }
 
@@ -753,13 +756,13 @@ function updateSummary(data) {
 let tiposAtivos = new Set(['RUN', 'Short']);
 
 function getFilteredData() {
-  const fVoo     = document.getElementById('filter-voo').value.trim().toLowerCase();
-  const fDeVal   = document.getElementById('filter-hora-de').value;
-  const fAteVal  = document.getElementById('filter-hora-ate').value;
-  const fAgente  = document.getElementById('filter-agente').value.trim().toLowerCase();
-  const fStatus  = document.getElementById('filter-status').value;
-  const fTipo    = document.getElementById('filter-tipo').value;
-  const fOrigem  = document.getElementById('filter-origem').value.trim().toLowerCase();
+  const fVoo = document.getElementById('filter-voo').value.trim().toLowerCase();
+  const fDeVal = document.getElementById('filter-hora-de').value;
+  const fAteVal = document.getElementById('filter-hora-ate').value;
+  const fAgente = document.getElementById('filter-agente').value.trim().toLowerCase();
+  const fStatus = document.getElementById('filter-status').value;
+  const fTipo = document.getElementById('filter-tipo').value;
+  const fOrigem = document.getElementById('filter-origem').value.trim().toLowerCase();
   const fDestino = document.getElementById('filter-destino').value.trim().toLowerCase();
 
   let data = [...MOCK_DATA];
@@ -813,10 +816,10 @@ function applyFilters() {
   updateSummary(data);
 
   // Atualiza label da janela de período
-  const fDeVal  = document.getElementById('filter-hora-de').value;
+  const fDeVal = document.getElementById('filter-hora-de').value;
   const fAteVal = document.getElementById('filter-hora-ate').value;
   if (fDeVal !== '' || fAteVal !== '') {
-    const ini = fDeVal  !== '' ? horaComOffset(parseInt(fDeVal))  : '—';
+    const ini = fDeVal !== '' ? horaComOffset(parseInt(fDeVal)) : '—';
     const fim = fAteVal !== '' ? horaComOffset(parseInt(fAteVal)) : '—';
     document.getElementById('window-label').textContent = `${ini} – ${fim}`;
   } else {
@@ -858,14 +861,14 @@ document.getElementById('btn-filtrar').addEventListener('click', applyFilters);
 });
 
 document.getElementById('btn-limpar').addEventListener('click', () => {
-  document.getElementById('filter-voo').value      = '';
-  document.getElementById('filter-hora-de').value  = '';
+  document.getElementById('filter-voo').value = '';
+  document.getElementById('filter-hora-de').value = '';
   document.getElementById('filter-hora-ate').value = '';
-  document.getElementById('filter-agente').value   = '';
-  document.getElementById('filter-status').value   = '';
-  document.getElementById('filter-tipo').value     = '';
-  document.getElementById('filter-origem').value   = '';
-  document.getElementById('filter-destino').value  = '';
+  document.getElementById('filter-agente').value = '';
+  document.getElementById('filter-status').value = '';
+  document.getElementById('filter-tipo').value = '';
+  document.getElementById('filter-origem').value = '';
+  document.getElementById('filter-destino').value = '';
   currentPage = 1;
   applyFilters();
 });
@@ -884,7 +887,7 @@ function simularAtualizacao() {
   const voo = emPercurso[Math.floor(Math.random() * emPercurso.length)];
   const aguardando = voo.hitos.filter(h => h.status === 'aguardando');
   if (!aguardando.length) return;
-  aguardando[0].status  = 'ok';
+  aguardando[0].status = 'ok';
   aguardando[0].horario = horaAgora();
   applyFilters();
 }
@@ -893,14 +896,14 @@ setInterval(simularAtualizacao, 12000);
 
 // ── RELÓGIO DO HEADER ──────────────────────────────────────────
 
-const DIAS_PT = ['DOMINGO','SEGUNDA','TERÇA','QUARTA','QUINTA','SEXTA','SÁBADO'];
+const DIAS_PT = ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'];
 
 function updateHeaderClock() {
   const now = new Date();
-  document.getElementById('header-weekday').textContent    = DIAS_PT[now.getDay()];
-  document.getElementById('header-date').textContent       = now.toLocaleDateString('pt-BR');
+  document.getElementById('header-weekday').textContent = DIAS_PT[now.getDay()];
+  document.getElementById('header-date').textContent = now.toLocaleDateString('pt-BR');
   document.getElementById('header-time-local').textContent = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-  document.getElementById('header-time-utc').textContent   = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+  document.getElementById('header-time-utc').textContent = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
 }
 
 // ── INICIALIZAÇÃO ──────────────────────────────────────────────

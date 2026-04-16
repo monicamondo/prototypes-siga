@@ -843,11 +843,18 @@ body {
 }
 
 .sg-time-label {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--siga-text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.3px;
   display: block;
+}
+
+.sg-time-date {
+  font-size: 10px;
+  color: var(--siga-text-tertiary);
+  display: block;
+  margin-top: 1px;
 }
 
 .sg-time-value {
@@ -871,7 +878,7 @@ body {
 }
 
 .sg-gate-label {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--siga-text-tertiary);
   display: block;
   text-transform: uppercase;
@@ -1153,7 +1160,7 @@ body {
 .sg-qty-found {
   font-size: 14px;
   font-weight: 700;
-  color: var(--siga-blue-700);
+  color: var(--siga-text-primary);
 }
 
 .sg-qty-sep {
@@ -1168,14 +1175,15 @@ body {
   color: var(--siga-text-tertiary);
 }
 
-/* Linha secundária de esteira */
-.sg-bags-esteira {
-  font-size: 9px;
+/* Código do bagbelt (secundário) */
+.sg-bags-bagbelt {
+  font-size: 10px;
   color: var(--siga-text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.4px;
   margin-top: 2px;
-  font-family: var(--siga-font-family);
+  font-family: var(--siga-font-mono, monospace);
+  font-weight: 500;
 }
 
 /* Botão de ordenação no cabeçalho */
