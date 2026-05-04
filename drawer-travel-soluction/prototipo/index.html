@@ -228,15 +228,16 @@
                 </label>
 
                 <label class="form-field solution-bag-editor__field--quantity">
-                  <span>BAG *</span>
-                  <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="0" value="0"
-                    data-bag-quantity />
-                </label>
+                  <label class="form-field solution-bag-editor__field--quantity">
+                    <span>Quantidade BAG*</span>
+                    <input type="number" min="0" max="99" value="0" inputmode="numeric" data-bag-quantity />
+                  </label>
 
-                <div class="solution-bag-editor__actions">
-                  <button class="solution-bag-editor__cancel" type="button" data-action="cancel-card">Cancelar</button>
-                  <button class="solution-bag-editor__save" type="submit">Salvar</button>
-                </div>
+                  <div class="solution-bag-editor__actions">
+                    <button class="solution-bag-editor__cancel" type="button"
+                      data-action="cancel-card">Cancelar</button>
+                    <button class="solution-bag-editor__save" type="submit">Salvar</button>
+                  </div>
               </form>
             </section>
 
