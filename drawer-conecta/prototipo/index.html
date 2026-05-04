@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawer Conecta - Protótipo SIGA</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <main class="page-content">
+    <button class="mock-page-trigger" type="button" id="btn-open-drawer" aria-label="Abrir painel de acomodação">
+      <img class="mock-page-image" src="./status-concluido-2x.png" alt="Tela de gerenciamento de voos em conexão" />
+    </button>
+  </main>
+
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <aside class="drawer" id="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title"
+    data-active-tab="solucao">
+    <header class="drawer-header">
+      <div class="drawer-header__content">
+        <div class="drawer-header__title-row">
+          <svg class="icon icon--header" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M5.2 5.4V4.2c0-.9.7-1.6 1.6-1.6h2.4c.9 0 1.6.7 1.6 1.6v1.2" />
+            <path
+              d="M4 5.4h8.1c.8 0 1.4.6 1.4 1.4v5.5c0 .8-.6 1.4-1.4 1.4H4c-.8 0-1.4-.6-1.4-1.4V6.8c0-.8.6-1.4 1.4-1.4Z" />
+            <path d="M5.6 5.4v8.3M10.4 5.4v8.3M2.6 8h10.8" />
+          </svg>
+          <h2 class="drawer-header__title" id="drawer-title">Gerenciar alternativa de voo</h2>
+        </div>
+        <p class="drawer-header__subtitle">
+          Configure informações de acomodação para passageiros com longos períodos de espera entre voos.
+        </p>
+      </div>
+
+      <button class="drawer-header__close" type="button" aria-label="Fechar painel" id="btn-close-drawer">
+        <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+        </svg>
+      </button>
+    </header>
+
+    <nav class="drawer-tabs" aria-label="Etapas da acomodação" role="tablist">
+      <button class="drawer-tabs__item drawer-tabs__item--solution active" role="tab" aria-selected="true"
+        data-tab="solucao" type="button">
+        Solução de viagem
+      </button>
+      <button class="drawer-tabs__item drawer-tabs__item--accommodation" role="tab" aria-selected="false"
+        data-tab="acomodacao" type="button">
+        Acomodação
+      </button>
+    </nav>
+
+    <section class="drawer-body">
+      <div class="drawer-tab-content solution-panel" data-tab-panel="solucao">
+        <section class="solution-flight" aria-label="Resumo da solução de viagem">
+          <div class="solution-flight__identity">
+            <div class="flight-summary__main">
+              <span class="flight-summary__code">LA3349</span>
+              <span class="flight-summary__badge">PR-MHK</span>
+              <span class="flight-summary__badge flight-summary__badge--aircraft">A321</span>
+            </div>
+            <p class="flight-summary__route">Origem: GRU - Destino final: CWB</p>
+          </div>
+
+          <div class="solution-flight__totals" aria-label="Totais da solução">
+            <span class="solution-total">
+              <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 8.2a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6Z" />
+                <path d="M4.2 13.1c.4-2 1.8-3.1 3.8-3.1s3.4 1.1 3.8 3.1" />
+              </svg>
+              Total PAX: <strong>10</strong>
+            </span>
+            <span class="solution-total">
+              <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M5.4 5.4V4.2c0-.8.6-1.4 1.4-1.4h2.4c.8 0 1.4.6 1.4 1.4v1.2" />
+                <path d="M4.1 5.4h7.8c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1H4.1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1Z" />
+                <path d="M5.6 7.1v4.4M10.4 7.1v4.4" />
+              </svg>
+              Total BAG: <strong>6</strong>
+            </span>
+          </div>
+        </section>
+
+        <section class="solution-filters" aria-label="Filtros da solução de viagem">
+          <label class="solution-field solution-field--search">
+            <span>Buscar:</span>
+            <span class="solution-search-control">
+              <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M7 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM10.8 10.8 14 14" />
+              </svg>
+              <input type="search" aria-label="Buscar PNR ou passageiro" />
+            </span>
+          </label>
+
+          <label class="solution-field">
+            <span>Status da solução:</span>
+            <input type="text" value="Short conection" />
+          </label>
+
+          <label class="solution-field">
+            <span>Aprovador*:</span>
+            <input type="text" value="Latam" />
+          </label>
+
+          <button class="solution-clear" type="button">Limpar</button>
+        </section>
+
+        <section class="solution-cards" aria-label="Trechos programados para passageiros">
+          <article class="solution-card">
+            <div class="solution-card__grid">
+              <section class="solution-pnr" aria-label="Passageiros do PNR SKJONT">
+                <div class="solution-pnr__heading">
+                  <div class="solution-pnr__code">
+                    <strong>PNR</strong>
+                    <span>SKJONT</span>
+                  </div>
+                  <div class="solution-pnr__total">
+                    Total PAX <strong>04</strong>
+                    <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M8 8.2a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6Z" />
+                      <path d="M4.2 13.1c.4-2 1.8-3.1 3.8-3.1s3.4 1.1 3.8 3.1" />
+                    </svg>
+                  </div>
+                </div>
+
+                <table class="solution-passengers">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Passageiros</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span>1</span></td>
+                      <td>FREIRE BRELAZ DE CASTRO</td>
+                    </tr>
+                    <tr>
+                      <td><span>2</span></td>
+                      <td>ACCIOLY BRELAZ DE CASTRO</td>
+                    </tr>
+                    <tr>
+                      <td><span>3</span></td>
+                      <td>A BRELAZ C DE OLIVEIRA</td>
+                    </tr>
+                    <tr>
+                      <td><span>4</span></td>
+                      <td>FREIRE BRELAZ DE CASTRO</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="solution-itinerary solution-itinerary--original" aria-label="Itinerário original">
+                <h3>ITINERÁRIO ORIGINAL</h3>
+                <ol class="solution-timeline">
+                  <li>
+                    <span class="solution-timeline__marker">1</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3342 GRU - BSB</strong>
+                      <time>01/07/2025 - 8:00 às 9:30</time>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="solution-timeline__marker">2</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA2542 BSB - MAO</strong>
+                      <time>01/07/2025 - 9:00 às 11:00</time>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+
+              <section class="solution-itinerary solution-itinerary--suggested" aria-label="Novo trecho sugerido">
+                <h3>NOVO TRECHO SUGERIDO</h3>
+                <ol class="solution-timeline solution-timeline--suggested">
+                  <li>
+                    <span class="solution-timeline__marker">1</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3342 GRU - BSB</strong>
+                      <time>01/07/2025 - 8:00 às 9:30</time>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="solution-timeline__marker">2</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3790 BSB - MAO</strong>
+                      <time>01/07/2025 - 14:00 às 16:30</time>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="solution-timeline__marker">3</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3790 BSB - MAO</strong>
+                      <time>01/07/2025 - 14:00 às 16:30</time>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+            </div>
+
+            <footer class="solution-card__footer">
+              <span><strong>Lido por:</strong> Monica Mondo (Latam)</span>
+              <span><strong>Confirmação de leitura:</strong> 28/02/2023 - 17:05</span>
+            </footer>
+          </article>
+
+          <article class="solution-card">
+            <div class="solution-card__grid">
+              <section class="solution-pnr" aria-label="Passageiros do PNR SKJONT">
+                <div class="solution-pnr__heading">
+                  <div class="solution-pnr__code">
+                    <strong>PNR</strong>
+                    <span>SKJONT</span>
+                  </div>
+                  <div class="solution-pnr__total">
+                    Total PAX <strong>04</strong>
+                    <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M8 8.2a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6Z" />
+                      <path d="M4.2 13.1c.4-2 1.8-3.1 3.8-3.1s3.4 1.1 3.8 3.1" />
+                    </svg>
+                  </div>
+                </div>
+
+                <table class="solution-passengers">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Passageiros</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span>1</span></td>
+                      <td>FREIRE BRELAZ DE CASTRO</td>
+                    </tr>
+                    <tr>
+                      <td><span>2</span></td>
+                      <td>ACCIOLY BRELAZ DE CASTRO</td>
+                    </tr>
+                    <tr>
+                      <td><span>3</span></td>
+                      <td>A BRELAZ C DE OLIVEIRA</td>
+                    </tr>
+                    <tr>
+                      <td><span>4</span></td>
+                      <td>FREIRE BRELAZ DE CASTRO</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="solution-itinerary solution-itinerary--original" aria-label="Itinerário original">
+                <h3>ITINERÁRIO ORIGINAL</h3>
+                <ol class="solution-timeline">
+                  <li>
+                    <span class="solution-timeline__marker">1</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3342 GRU - BSB</strong>
+                      <time>01/07/2025 - 8:00 às 9:30</time>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="solution-timeline__marker">2</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA2542 BSB - MAO</strong>
+                      <time>01/07/2025 - 9:00 às 11:00</time>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+
+              <section class="solution-itinerary solution-itinerary--suggested" aria-label="Novo trecho sugerido">
+                <h3>NOVO TRECHO SUGERIDO</h3>
+                <ol class="solution-timeline solution-timeline--suggested">
+                  <li>
+                    <span class="solution-timeline__marker">1</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3342 GRU - BSB</strong>
+                      <time>01/07/2025 - 8:00 às 9:30</time>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="solution-timeline__marker">2</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3790 BSB - MAO</strong>
+                      <time>01/07/2025 - 14:00 às 16:30</time>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="solution-timeline__marker">3</span>
+                    <div class="solution-timeline__content">
+                      <strong>LA3790 BSB - MAO</strong>
+                      <time>01/07/2025 - 14:00 às 16:30</time>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+            </div>
+
+            <footer class="solution-card__footer">
+              <span><strong>Lido por:</strong> Monica Mondo (Latam)</span>
+              <span><strong>Confirmação de leitura:</strong> 28/02/2023 - 17:05</span>
+            </footer>
+          </article>
+        </section>
+      </div>
+
+      <div class="drawer-tab-content" data-tab-panel="acomodacao" hidden>
+        <section class="flight-summary" aria-label="Resumo do voo desconectado">
+          <div class="flight-summary__top">
+            <div class="flight-summary__main">
+              <span class="flight-summary__code" id="flight-code">LA3349</span>
+              <span class="flight-summary__badge" id="flight-registration">PR-MHK</span>
+              <span class="flight-summary__badge flight-summary__badge--aircraft" id="flight-aircraft">A321</span>
+            </div>
+
+            <p class="flight-summary__route" id="flight-route">Origem: GRU - Destino: SCL</p>
+          </div>
+
+          <div class="flight-summary__counters" aria-label="Totais acomodados">
+            <div class="counter-pill">
+              <span class="counter-pill__label">PAX</span>
+              <strong id="pax-counter">
+                <span class="counter-pill__done">0</span><span class="counter-pill__total">/10</span>
+              </strong>
+              <small id="pax-remaining">10 à acomodar</small>
+            </div>
+            <div class="counter-pill">
+              <span class="counter-pill__label">BAG</span>
+              <strong id="bag-counter">
+                <span class="counter-pill__done">0</span><span class="counter-pill__total">/6</span>
+              </strong>
+              <small id="bag-remaining">6 à acomodar</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="plan-form" aria-labelledby="new-plan-title">
+          <div class="section-heading">
+            <div>
+              <h3 class="section-title" id="new-plan-title">Novo plano de acomodação</h3>
+              <p class="section-subtitle">Informe a quantidade de passageiros e bagagens e registre os trechos de
+                conexão até o destino
+                final.</p>
+            </div>
+            <span class="context-chip" id="destination-chip">Destino final: SCL</span>
+          </div>
+
+          <div class="plan-quantities" role="group" aria-label="Quantidade do grupo acomodado">
+            <label class="form-field">
+              <span>PAX *</span>
+              <input id="plan-pax" type="number" min="1" inputmode="numeric" placeholder="0" />
+            </label>
+
+            <label class="form-field">
+              <span>BAG *</span>
+              <input id="plan-bag" type="number" min="0" inputmode="numeric" placeholder="0" />
+            </label>
+          </div>
+
+          <div class="route-builder" aria-labelledby="route-builder-title">
+            <div class="route-builder__header">
+              <div>
+                <h4 id="route-builder-title">Trechos da viagem</h4>
+                <p>Registre todos os trechos necessários para chegar ao destino final.</p>
+              </div>
+
+              <button class="secondary-action" type="button" id="btn-add-segment">
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8 3.2v9.6M3.2 8h9.6" />
+                </svg>
+                Adicionar trecho
+              </button>
+            </div>
+
+            <div class="segment-grid" id="segments-list" aria-live="polite"></div>
+          </div>
+
+          <p class="validation-message" id="plan-validation" role="status"></p>
+          <div class="plan-form__actions">
+            <button class="plan-save-action" type="button" id="btn-save-plan">Salvar acomodação</button>
+          </div>
+        </section>
+
+        <section class="saved-plans" aria-labelledby="saved-plans-title">
+          <div class="section-heading section-heading--compact">
+            <h3 class="section-title" id="saved-plans-title">Acomodações registradas</h3>
+            <span class="saved-plans__count" id="saved-count">0 acomodações</span>
+          </div>
+
+          <div class="saved-plans__list" id="plans-list"></div>
+        </section>
+
+      </div>
+    </section>
+
+    <footer class="drawer-footer">
+      <button class="drawer-footer__btn" type="button" id="btn-finish-planning">Fechar</button>
+      <p class="drawer-footer__hint" id="footer-action-hint">Sem alterações para salvar.</p>
+    </footer>
+  </aside>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>
